@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MarjuSousplat - Login/Cadastro</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+    }
+
+    .logo-section {
+      width: 50%;
+      background-color: #ffe6f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #f3cbe0;
+    }
+
+    .logo-section img {
+      max-width: 70%;
+    }
+
+    .form-section {
+      width: 50%;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      width: 100%;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 10px 0;
+      font-weight: bold;
+      color: #c51e64;
+      text-align: center;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      user-select: none;
+    }
+
+    .tab.active {
+      border-bottom: 2px solid #c51e64;
+    }
+
+    form {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    form.active {
+      display: flex;
+    }
+
+    form input {
+      padding: 15px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 25px;
+      background-color: #c51e64;
+      color: white;
+      font-size: 16px;
+      outline: none;
+    }
+
+    form input::placeholder {
+      color: white;
+    }
+
+    .forgot-password {
+      text-align: left;
+      font-size: 12px;
+      color: #c51e64;
+      margin-bottom: 20px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .submit-btn {
+      padding: 15px;
+      background-color: #c51e64;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #a0154e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-section">
+      <img src="MarjuSousplat-removebg-preview.png" alt="Logo Artesanato em Crochê" />
+    </div>
+    <div class="form-section">
+      <div class="tabs">
+        <div class="tab active" onclick="showForm('login')">ENTRAR</div>
+        <div class="tab" onclick="showForm('cadastro')">CADASTRAR</div>
+      </div>
+
+      <form id="login" class="active">
+        <input type="email" id="loginEmail" placeholder="E-mail" required />
+        <input type="password" id="loginPassword" placeholder="Senha" required />
+        <div class="forgot-password" onclick="alert('Funcionalidade de recuperação ainda não implementada.')">Esqueci minha senha</div>
+        <button class="submit-btn" type="submit">ENTRAR</button>
+      </form>
+
+      <form id="cadastro">
+        <input type="text" id="cpf" placeholder="CPF" required pattern="\d{11}" title="Digite um CPF válido com 11 números" />
+        <input type="text" id="nome" placeholder="Nome" required />
+        <input type="password" id="cadastroPassword" placeholder="Senha" required />
+        <input type="email" id="cadastroEmail" placeholder="E-mail" required />
+        <button class="submit-btn" type="submit">CADASTRAR</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function showForm(formId) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('form').forEach(form => form.classList.remove('active'));
+
+      document.getElementById(formId).classList.add('active');
+      const tabIndex = formId === 'login' ? 0 : 1;
+      document.querySelectorAll('.tab')[tabIndex].classList.add('active');
+    }
+
+    // Evento submit do login
+    document.getElementById('login').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+
+     
+      if(email === 'usuario@exemplo.com' && password === '123456') {
+        alert('Login efetuado com sucesso!');
+        // Redirecionar ou mostrar conteúdo após login
+      } else {
+        alert('E-mail ou senha inválidos.');
+      }
+    });
+
+    // Evento submit do cadastro
+    document.getElementById('cadastro').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const cpf = document.getElementById('cpf').value.trim();
+      const nome = document.getElementById('nome').value.trim();
+      const password = document.getElementById('cadastroPassword').value.trim();
+      const email = document.getElementById('cadastroEmail').value.trim();
+
+      // Validação simples do CPF (só 11 dígitos)
+      const cpfRegex = /^\d{11}$/;
+      if (!cpfRegex.test(cpf)) {
+        alert('Por favor, insira um CPF válido com 11 números.');
+        return;
+      }
+
+      // Você pode adicionar mais validações e integração backend aqui
+      alert(`Cadastro realizado com sucesso!\nNome: ${nome}\nCPF: ${cpf}\nEmail: ${email}`);
+      // Limpar formulário após cadastro
+      this.reset();
+      showForm('login');
+    });
+  </script>
+</body>
+</html>
