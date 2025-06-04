@@ -1,101 +1,60 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Produtos - MarjuSousplat</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    body {
-      margin: 0;
-      background-color: #fef3f8;
-    }
-    header {
-      background-color: #fcd2e4;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    header img.logo {
-      max-height: 60px;
-      cursor: pointer;
-    }
-    .icons {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-    }
-    .icons span {
-      margin-left: 15px;
-      cursor: pointer;
-      font-size: 20px;
-      color: #c51e64;
-      user-select: none;
-    }
-    .produtos-section {
-      padding: 30px;
-      text-align: center;
-    }
-    .produtos-section h2 {
-      color: #c51e64;
-      margin-bottom: 20px;
-    }
-    .produtos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
-      justify-items: center;
-    }
-    .produto {
-      background: linear-gradient(#fddbe8, #f4a7c1);
-      padding: 15px;
-      border-radius: 10px;
-      width: 150px;
-    }
-    .produto img {
-      width: 100%;
-      border-radius: 5px;
-    }
-    .produto p {
-      margin: 10px 0 0;
-      color: #c51e64;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Produtos - MarjuSousplat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen flex flex-col bg-pink-50 font-[Segoe_UI]">
+    <header class="bg-pink-200 py-5 px-4 flex items-center justify-center relative">
+      <img src="/assets/MarjuSousplat-removebg-preview.png" alt="Logo MarjuSousplat" id="logo" class="h-[60px] cursor-pointer" />
+      <div class="absolute right-5 top-5 flex gap-4 text-pink-600">
+        <span title="Página inicial" class="text-3xl">🏠</span>
+        <span title="Minha Conta" class="text-3xl">👤</span>
+        <span title="Carrinho" class="text-3xl">🛒</span>
+      </div>
+    </header>
 
-  <header>
-    <img class="logo" src="MarjuSousplat-removebg-preview.png" alt="Logo MarjuSousplat" id="logo" />
-    <div class="icons">
-      <span title="Página inicial">🏠</span>
-      <span title="Minha Conta" id="perfil">👤</span>
-      <span title="Carrinho">🛒</span>
-    </div>
-  </header>
+    <main class="flex-grow px-8 py-6 text-center">
+      <section class="produtos-section">
+        <h2 class="text-2xl text-pink-700 mb-6 font-semibold">PRODUTOS</h2>
+        <div class="grid grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] gap-5 justify-items-center">
+          <div class="w-[150px] rounded-lg p-4 bg-gradient-to-b from-pink-100 to-pink-300">
+            <img src="produto1.jpg" alt="Produto 1" class="w-full rounded">
+            <p class="mt-2 text-pink-700 font-bold">R$ 29,90</p>
+          </div>
+          <div class="w-[150px] rounded-lg p-4 bg-gradient-to-b from-pink-100 to-pink-300">
+            <img src="produto2.jpg" alt="Produto 2" class="w-full rounded">
+            <p class="mt-2 text-pink-700 font-bold">R$ 100,00</p>
+          </div>
+          <div class="w-[150px] rounded-lg p-4 bg-gradient-to-b from-pink-100 to-pink-300">
+            <img src="produto3.jpg" alt="Produto 3" class="w-full rounded">
+            <p class="mt-2 text-pink-700 font-bold">R$ 46,00</p>
+          </div>
+          <div class="w-[150px] rounded-lg p-4 bg-gradient-to-b from-pink-100 to-pink-300">
+            <img src="produto4.jpg" alt="Produto 4" class="w-full rounded">
+            <p class="mt-2 text-pink-700 font-bold">R$ 119,99</p>
+          </div>
+          <div class="w-[150px] rounded-lg p-4 bg-gradient-to-b from-pink-100 to-pink-300">
+            <img src="produto5.jpg" alt="Produto 5" class="w-full rounded">
+            <p class="mt-2 text-pink-700 font-bold">R$ 190,00</p>
+          </div>
+          <div class="w-[150px] rounded-lg p-4 bg-gradient-to-b from-pink-100 to-pink-300">
+            <img src="produto6.jpg" alt="Produto 6" class="w-full rounded">
+            <p class="mt-2 text-pink-700 font-bold">R$ 200,00</p>
+          </div>
+      </section>
+    </main>  
 
-  <section class="produtos-section">
-    <h2>PRODUTOS</h2>
-    <div class="produtos">
-      <div class="produto">
-        <img src="produto1.jpg" alt="Produto 1" />
-        <p>R$ 29,90</p>
+    <footer class="bg-pink-100 px-8 py-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <img src="/assets/MarjuSousplat-removebg-preview.png" alt="MarjuSousplatLogo" class="h-[80px] mb-4 md:mb-0">
+        <p class="text-center text-sm text-pink-700 mt-4">&copy 2025 MarjuSousplat - Todos os direitos reservados</p>
+        <img src="/assets/bandeirasCartoes.png" alt="bandeirasCartoes" class="h-[50px]">
       </div>
-      <div class="produto">
-        <img src="produto2.jpg" alt="Produto 2" />
-        <p>R$ 100,00</p>
-      </div>
-      <div class="produto">
-        <img src="produto3.jpg" alt="Produto 3" />
-        <p>R$ 46,00</p>
-      </div>
-      <div class="produto">
-        <img src="produto4.jpg" alt="Produto 4" />
-        <p>R$ 119,99</p>
-     
+    </footer>
+  </body>
+</html>
+
+
