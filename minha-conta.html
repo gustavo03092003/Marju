@@ -191,6 +191,31 @@
         this.disabled = true;
         this.innerText = 'Atualizando...';
       });
+      // Preenchimento automático com ViaCEP
+      document.getElementById('cep').addEventListener('blur', function () {
+        const cep = this.value.replace(/\D/g, '');
+
+        if (cep.length !== 8) {
+          alert('CEP inválido. Digite os 8 números do CEP.');
+          return;
+        }
+
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.erro) {
+              alert('CEP não encontrado.');
+              return;
+            }
+
+            document.getElementById('rua').value = data.logradouro || '';
+            document.getElementById('estado').value = data.uf || '';
+            document.getElementById('cidade').value = data.localidade || '';
+          })
+          .catch(() => {
+            alert('Erro ao buscar o CEP.');
+          });
+      });
     </script>
   </body>
 </html>
