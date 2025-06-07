@@ -9,93 +9,199 @@
       box-sizing: border-box;
       font-family: 'Segoe UI', sans-serif;
     }
-    body {
+
+    html, body {
       margin: 0;
-      background-color: #fef3f8;
+      padding: 0;
+      height: 100%;
     }
-    header {
-      background-color: #fcd2e4;
-      padding: 20px;
-      text-align: center;
-      position: relative;
+
+    body {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #ffffff;
     }
-    header img.logo {
-      max-height: 60px;
-      cursor: pointer;
+
+    main {
+      flex: 1;
     }
-    .icons {
+
+    header {
+      background-color: #ffffff;
+      padding: 10px 20px;
+      position: relative;
+      /* border-bottom: 2px solid #c51e64;  <-- removida */
+    }
+
+    .top-icons {
       position: absolute;
       right: 20px;
-      top: 20px;
+      top: 15px;
     }
-    .icons span {
+
+    .top-icons span {
       margin-left: 15px;
       cursor: pointer;
       font-size: 20px;
       color: #c51e64;
-      user-select: none;
     }
+
+    /* Banner com imagem colada no topo */
+    .banner {
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center; /* centraliza horizontal */
+      align-items: flex-start; /* alinha no topo verticalmente */
+      background-color: #fff;
+      position: relative;
+      margin-top: 0; /* garante que esteja colado no topo */
+    }
+
+    .banner img {
+      width: auto;
+      max-width: 35%;  /* ajusta a largura máxima da imagem */
+      height: auto;
+      object-fit: contain;  /* mantém a proporção da imagem */
+      max-height: 100%; /* garante que a imagem não ultrapasse a altura do banner */
+      object-position: center top; /* centraliza a imagem no topo */
+      margin-top: 0; /* garante que a imagem esteja colada no topo do banner */
+      display: block; /* remove espaços indesejados */
+      position: absolute; /* permite que a imagem ocupe o espaço do banner */
+      top: 0; /* garante que a imagem esteja colada no topo do banner */
+      left: 0; /* garante que a imagem esteja colada à esquerda do banner */
+      right: 0; /* garante que a imagem esteja colada à direita do banner */
+      bottom: 0; /* garante que a imagem ocupe todo o espaço do banner */
+      margin: auto; /* centraliza a imagem dentro do banner */
+      z-index: 1; /* garante que a imagem fique acima de outros elementos */
+      
+
+    }
+    
+
     .produtos-section {
-      padding: 30px;
+      padding: 40px 20px;
       text-align: center;
     }
+
     .produtos-section h2 {
       color: #c51e64;
-      margin-bottom: 20px;
+      font-size: 24px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
+
     .produtos {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px;
       justify-items: center;
     }
+
     .produto {
       background: linear-gradient(#fddbe8, #f4a7c1);
       padding: 15px;
       border-radius: 10px;
-      width: 150px;
+      width: 180px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+
     .produto img {
       width: 100%;
-      border-radius: 5px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
     }
+
     .produto p {
       margin: 10px 0 0;
       color: #c51e64;
       font-weight: bold;
+    }
+
+    footer {
+      background-color: #fcd2e4;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-size: 12px;
+      color: #c51e64;
+      text-align: center;
+    }
+
+    .bandeiras-cartoes img {
+      height: 40px;
+      margin-left: 10px;
+    }
+
+    .bandeiras-cartoes {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img class="logo" src="MarjuSousplat-removebg-preview.png" alt="Logo MarjuSousplat" id="logo" />
-    <div class="icons">
-      <span title="Página inicial">🏠</span>
-      <span title="Minha Conta" id="perfil">👤</span>
+    <div class="top-icons">
+      <span title="Minha Conta">👤</span>
       <span title="Carrinho">🛒</span>
     </div>
   </header>
 
-  <section class="produtos-section">
-    <h2>PRODUTOS</h2>
-    <div class="produtos">
-      <div class="produto">
-        <img src="produto1.jpg" alt="Produto 1" />
-        <p>R$ 29,90</p>
+  <div class="banner">
+    <img src="logoo-removebg-preview.png" alt="Logo MarjuSousplat" />
+  </div>
+
+  <main>
+    <section class="produtos-section">
+      <h2>PRODUTOS</h2>
+      <div class="produtos">
+        <div class="produto">
+          <img src="20221103_085746.jpg" alt="Produto 1" />
+          <p>R$ 29,90</p>
+        </div>
+        <div class="produto">
+          <img src="prod22.jpg" alt="Produto 2" />
+          <p>R$ 100,00</p>
+        </div>
+        <div class="produto">
+          <img src="prod33.jpeg" alt="Produto 3" />
+          <p>R$ 46,00</p>
+        </div>
+        <div class="produto">
+          <img src="prod4.jpg" alt="Produto 4" />
+          <p>R$ 119,99</p>
+        </div>
+        <div class="produto">
+          <img src="prod5.jpg" alt="Produto 5" />
+          <p>R$ 190,00</p>
+        </div>
+        <div class="produto">
+          <img src="prod6.jpg" alt="Produto 6" />
+          <p>R$ 200,00</p>
+        </div>
       </div>
-      <div class="produto">
-        <img src="produto2.jpg" alt="Produto 2" />
-        <p>R$ 100,00</p>
-      </div>
-      <div class="produto">
-        <img src="produto3.jpg" alt="Produto 3" />
-        <p>R$ 46,00</p>
-      </div>
-      <div class="produto">
-        <img src="produto4.jpg" alt="Produto 4" />
-        <p>R$ 119,99</p>
-     
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-logo">
+      © MarjuSousplat<br> Feito com amor 💕
+    </div>
+    <div class="bandeiras-cartoes">
+      <img src="bandeirasCartoes.png" alt="Bandeiras de Cartões" />
+    </div>
+  </footer>
+
+</body>
+</html>
