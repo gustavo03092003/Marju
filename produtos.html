@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Produtos - MarjuSousplat</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     * {
       box-sizing: border-box;
@@ -34,69 +35,75 @@
       /* border-bottom: 2px solid #c51e64;  <-- removida */
     }
 
-    .top-icons {
-      position: absolute;
-      right: 20px;
-      top: 15px;
+    header {
+    position: relative;
+    text-align: center;
+    background-color: #fff;
     }
 
-    .top-icons span {
-      margin-left: 15px;
-      cursor: pointer;
-      font-size: 20px;
-      color: #c51e64;
+    .header-icons {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 20px;
+        color: #a0004d;
+        
+        align-items: self-end;
+    }
+    a { color: inherit; }
+    .header-icons i {
+        margin-left: 15px;
+        cursor: pointer;
     }
 
-    /* Banner com imagem colada no topo */
     .banner {
-      width: 100%;
-      height: 300px;
-      overflow: hidden;
-      display: flex;
-      justify-content: center; /* centraliza horizontal */
-      align-items: flex-start; /* alinha no topo verticalmente */
-      background-color: #fff;
-      position: relative;
-      margin-top: 0; /* garante que esteja colado no topo */
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
     }
 
-    .banner img {
-      width: auto;
-      max-width: 35%;  /* ajusta a largura máxima da imagem */
-      height: auto;
-      object-fit: contain;  /* mantém a proporção da imagem */
-      max-height: 100%; /* garante que a imagem não ultrapasse a altura do banner */
-      object-position: center top; /* centraliza a imagem no topo */
-      margin-top: 0; /* garante que a imagem esteja colada no topo do banner */
-      display: block; /* remove espaços indesejados */
-      position: absolute; /* permite que a imagem ocupe o espaço do banner */
-      top: 0; /* garante que a imagem esteja colada no topo do banner */
-      left: 0; /* garante que a imagem esteja colada à esquerda do banner */
-      right: 0; /* garante que a imagem esteja colada à direita do banner */
-      bottom: 0; /* garante que a imagem ocupe todo o espaço do banner */
-      margin: auto; /* centraliza a imagem dentro do banner */
-      z-index: 1; /* garante que a imagem fique acima de outros elementos */
-      
+    .top-bar {
+    background-color: #fff;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
+.header-icons i {
+    font-size: 30px;
+    color: #a0004d;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+/* Banner principal */
+    .main-banner img {
+        width: 100%;
+        /*display: block;*/
+        height: 70%;
     }
-    
-
     .produtos-section {
-      padding: 40px 20px;
+      padding: 10px 10px;
       text-align: center;
     }
 
     .produtos-section h2 {
       color: #c51e64;
-      font-size: 24px;
-      margin-bottom: 30px;
+      font-size: 50px;
+      margin-bottom: 10px;
       font-weight: bold;
     }
 
     .produtos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 25px;
+      gap: 15px;
       justify-items: center;
     }
 
@@ -110,7 +117,7 @@
 
     .produto img {
       width: 100%;
-      height: 140px;
+      height: 220px;
       object-fit: cover;
       border-radius: 8px;
     }
@@ -131,14 +138,14 @@
     }
 
     .footer-logo {
-      font-size: 12px;
+      font-size: 15px;
       color: #c51e64;
       text-align: center;
     }
 
     .bandeiras-cartoes img {
-      height: 40px;
-      margin-left: 10px;
+      height: 100px;
+      margin-left: 35px;
     }
 
     .bandeiras-cartoes {
@@ -149,57 +156,54 @@
     }
   </style>
 </head>
-<body>
-
-  <header>
-    <div class="top-icons">
-      <span title="Minha Conta">👤</span>
-      <span title="Carrinho">🛒</span>
-    </div>
-  </header>
-
-  <div class="banner">
-    <img src="logoo-removebg-preview.png" alt="Logo MarjuSousplat" />
-  </div>
-
+<body class="bg-gradient-to-br from-pink-100 to-pink-300 min-h-screen flex flex-col items-center"> 
+        <header class="main-banner">
+          <div class="header-icons top-bar">
+           <a href="produtos.html"><i class="fas fa-home"></i></a>
+            <a href="minha-conta.html"><i class="fas fa-user"></i></a>
+            <a href= "pagamento.html"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+          <img src="banner2.png" alt="MarjuSousplat Crochê">
+        </header>
   <main>
     <section class="produtos-section">
-      <h2>PRODUTOS</h2>
+      <h2>PRODUTOS</h2><br><br>
       <div class="produtos">
         <div class="produto">
-          <img src="logo_1.jpg" alt="Produto 1" />
-          <p>R$ 29,90</p>
+          <img src="img_produtos_minhaconta/logo_1.jpg" alt="Produto 1" />
+          <p>R$ 29,90 <i class="fas fa-shopping-cart"></i></p>
         </div>
         <div class="produto">
-          <img src="prod22.jpg" alt="Produto 2" />
-          <p>R$ 100,00</p>
+          <img src="img_produtos_minhaconta/prod22.jpg" alt="Produto 2" />
+          <p>R$ 100,00 <i class="fas fa-shopping-cart"></i> </p>
         </div>
         <div class="produto">
-          <img src="prod33.jpeg" alt="Produto 3" />
-          <p>R$ 46,00</p>
+          <img src="img_produtos_minhaconta/prod33.jpeg" alt="Produto 3" />
+          <p>R$ 46,00 <i class="fas fa-shopping-cart"></i></p>
         </div>
         <div class="produto">
-          <img src="prod4.jpg" alt="Produto 4" />
-          <p>R$ 119,99</p>
+          <img src="img_produtos_minhaconta/prod4.jpg" alt="Produto 4" />
+          <p>R$ 119,99 <i class="fas fa-shopping-cart"></i></p>
         </div>
         <div class="produto">
-          <img src="prod5.jpg" alt="Produto 5" />
-          <p>R$ 190,00</p>
+          <img src="img_produtos_minhaconta/prod5.jpg" alt="Produto 5" />
+          <p>R$ 190,00 <i class="fas fa-shopping-cart"></i></p>
         </div>
         <div class="produto">
-          <img src="prod6.jpg" alt="Produto 6" />
-          <p>R$ 200,00</p>
+          <img src="img_produtos_minhaconta/prod6.jpg" alt="Produto 6" />
+          <p>R$ 200,00 <i class="fas fa-shopping-cart"></i></p>
         </div>
       </div>
     </section>
   </main>
-
+  <br><br><br><br>
   <footer>
     <div class="footer-logo">
-      © MarjuSousplat<br> Feito com amor 💕
+      <img src="logo redondo.png" alt="Logo Redonda" style="height: 100px; height: 100px" /> 
+      <br> Feito com amor 💕
     </div>
     <div class="bandeiras-cartoes">
-      <img src="bandeirasCartoes.png" alt="Bandeiras de Cartões" />
+      <img src="image-removebg-preview.png" alt="Bandeiras de Cartões" />
     </div>
   </footer>
 

@@ -5,6 +5,7 @@
     <title>Minha Conta - MarjuSousplat</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
       .tab {
         transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
@@ -12,32 +13,69 @@
       .tab:active {
         transform: scale(0.98);
       }
-      /* Diminui o tamanho das imagens da seção Meus Pedidos */
-      #tabPedidos img {
-        height: 60px; /* altura menor */
-        width: auto;  /* mantém proporção */
-        border-radius: 6px;
-      }
+  .top-bar {
+    background-color: "bg-gradient-to-br from-pink-100 to-pink-300";
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .header-icons i {
+      font-size: 30px;
+      color: #a0004d;
+      margin-left: 15px;
+      cursor: pointer;
+  }
+
+    footer {
+      background-color: #fcd2e4;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+      position: end;
+    }
+
+    .footer-logo {
+      font-size: 15px;
+      color: #c51e64;
+      text-align: center;
+    }
+
     </style>
   </head>
   <body class="bg-gradient-to-br from-pink-100 to-pink-300 min-h-screen flex flex-col items-center">
-    <header>
+  <header>
       <header class="w-screen bg-pink-200 p-4">
-        <marquee behavior="scroll" direction="left" scrollamount="5" class="text-pink-700 font-bold text-xl">
-          MarjuSousplat Crochê - Feito com amor 💕 | Promoções especiais toda semana! | Frete grátis acima de R$100!
-        </marquee>
-      </header>
-    </header>
+          <marquee behavior="scroll" direction="left" scrollamount="5" class="text-pink-700 font-bold text-xl">
+            MarjuSousplat Crochê - Feito com amor 💕 | Promoções especiais toda semana! | Frete grátis acima de R$100!
+          </marquee>
+        </header>
+
+        <header class="main-banner">
+          <div class="header-icons top-bar">
+           <a href="produtos.html"><i class="fas fa-home"></i></a>
+            <a href="minha-conta.html"><i class="fas fa-user"></i></a>
+            <a href= "pagamento.html"><i class="fas fa-shopping-cart"></i></a>
+
+        </div>
+        </header>
+        
+        
+  </header>
     <!-- Cabeçalho -->
-    <header class="w-full max-w-4xl flex justify-between items-center py-4 px-6">
-      <h1 class="text-3xl font-bold text-pink-600">Marju<span class="text-pink-400">Sousplat</span></h1>
-      <nav class="flex space-x-4 text-pink-600 text-2xl">
-        <a href="#"><i class="fas fa-home"></i></a>
-        <a href="#"><i class="fas fa-user"></i></a>
-        <a href="#"><i class="fas fa-shopping-cart"></i></a>
-      </nav>
+    <header>
+      <!--<h1 class="text-3xl font-bold text-pink-600">Marju<span class="text-pink-400">Sousplat</span></h1>-->
+      <center><img src="logoo-removebg-preview.png" alt="MarjuSousplat Crochê" style="height: 280px"></center>
     </header>
-    <!-- Seção de produtos -->
+      <!-- Seção de produtos -->
     <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg overflow-hidden mt-6">
       <div class="flex">
         <button id="btnConta" class="tab flex-1 py-2 text-center bg-pink-500 text-white font-semibold">Minha Conta</button>
@@ -46,19 +84,21 @@
 
       <!-- Minha Conta -->
       <form id="tabConta" class="bg-pink-100 p-6 space-y-4">
-        <!-- ... seu formulário aqui (mantido igual) ... -->
         <div>
           <label for="nome" class="sr-only">Nome</label>
           <input type="text" id="nome" name="nome" placeholder="Nome" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300">
         </div>
+
         <div>
           <label for="email" class="sr-only">E-mail</label>
           <input type="email" id="email" name="email" placeholder="E-mail" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300">
         </div>
+
         <div>
           <label for="cpf" class="sr-only">CPF</label>
-          <input type="text" id="cpf" name="cpf" placeholder="CPF" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300" disabled>
+          <input type="text" id="cpf" name="cpf" placeholder="CPF" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300" disabled = "">
         </div>
+
         <div class="flex space-x-2">
           <div>
             <label for="cep" class="sr-only">CEP</label>
@@ -69,10 +109,12 @@
             <input type="text" id="estado" name="estado" placeholder="Estado" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300">
           </div>
         </div>
+
         <div>
           <label for="rua" class="sr-only">Rua</label>
           <input type="text" id="rua" name="rua" placeholder="Rua" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300">
         </div>
+
         <div class="flex space-x-2">
           <div>
             <label for="cidade" class="sr-only">Cidade</label>
@@ -87,10 +129,12 @@
             <input type="text" id="complemento" name="complemento" placeholder="Complemento" class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300">
           </div>
         </div>
+
         <div class="flex justify-center space-x-4 pt-4">
           <button type="submit" class="submit-btn bg-pink-500 text-white font-semibold px-6 py-2 rounded hover:bg-pink-600">Atualizar</button>
           <button type="reset" class="bg-pink-400 text-white font-semibold px-6 py-2 rounded hover:bg-pink-500">Cancelar</button>
         </div>
+
         <div class="text-center">
           <a href="recuperar-senha.html" class="text-sm text-pink-600 hover:underline">Esqueci minha senha</a>
         </div>
@@ -101,8 +145,8 @@
         <div class="bg-white p-4 rounded shadow">
           <p class="text-pink-700 font-semibold">Pedido nº 147377424</p>
           <div class="flex items-center space-x-2 py-2">
-            <img src="prod22.jpg" alt="produto" class="rounded">
-            <img src="prod33.jpeg" alt="produto" class="rounded">
+            <img src="img_produtos_minhaconta/prod6.jpg" alt="produto" class="rounded" style="height: 100px; height: 100px;">
+            <img src="img_produtos_minhaconta/prod5.jpg" alt="produto" class="rounded" style="height: 100px; height: 100px;">
           </div>
           <div class="flex space-x-2">
             <button class="btn-detalhes bg-pink-500 text-white text-sm px-4 py-1 rounded hover:bg-pink-600">Ver detalhes</button>
@@ -113,8 +157,8 @@
         <div class="bg-white p-4 rounded shadow">
           <p class="text-pink-700 font-semibold">Pedido nº 165377424</p>
           <div class="flex items-center space-x-2 py-2">
-            <img src="prod22.jpg" alt="produto" class="rounded">
-            <img src="prod33.jpeg" alt="produto" class="rounded">
+            <img src="img_produtos_minhaconta/prod22.jpg" alt="produto" class="rounded" style="height: 100px; height: 100px;">
+            <img src="img_produtos_minhaconta/prod33.jpeg" alt="produto" class="rounded" style="height: 100px; height: 100px;">
           </div>
           <div class="flex space-x-2">
             <button class="btn-detalhes bg-pink-500 text-white text-sm px-4 py-1 rounded hover:bg-pink-600">Ver detalhes</button>
@@ -124,7 +168,7 @@
       </div>
     </div>
 
-    <!-- Modal -->
+      <!-- Modal -->
     <div id="modal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50">
       <div class="bg-white p-6 rounded shadow-lg text-center">
         <h2 id="modalTitle" class="text-xl font-semibold text-pink-600 mb-4">Título</h2>
@@ -132,6 +176,14 @@
         <button id="closeModal" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Fechar</button>
       </div>
     </div>
+      <br><br>
+    <footer>
+    <div class="footer-logo">
+      <img src="logo redondo.png" alt="Logo Redonda" style="height: 100px; height: 100px" /> 
+      <br> Feito com amor 💕
+    </div>
+  </footer>
+
 
     <script> 
       const btnConta = document.getElementById('btnConta');
