@@ -158,6 +158,13 @@
       justify-content: center;
       flex-wrap: wrap;
     }
+
+    @media (max-width: 600px) {
+    .produtos {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 400px;
+  }
+}
   </style>
 </head>
 <body class="bg-gradient-to-br from-pink-100 to-pink-300 min-h-screen flex flex-col items-center"> 
