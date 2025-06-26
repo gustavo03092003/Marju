@@ -1,222 +1,534 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Produtos - MarjuSousplat</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background-color: #ffffff;
-    }
-
-    main {
-      flex: 1;
-    }
-
-    header {
-      background-color: #ffffff;
-      padding: 10px 20px;
-      position: relative;
-      /* border-bottom: 2px solid #c51e64;  <-- removida */
-    }
-
-    header {
-    position: relative;
-    text-align: center;
-    background-color: #fff;
-    }
-
-    .header-icons {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Produtos - MarjuSousplat</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: #ffffff;
+      }
+      main {
+        flex: 1;
+      }
+      header {
+        background-color: #ffffff;
+        padding: 10px 20px;
+        position: relative;
+      }
+      .header-icons {
         position: absolute;
         top: 10px;
         right: 20px;
         font-size: 20px;
         color: #a0004d;
-        
-        align-items: self-end;
-    }
-    a { color: inherit; }
-    .header-icons i {
+      }
+      a {
+        color: inherit;
+      }
+      .header-icons i {
         margin-left: 15px;
         cursor: pointer;
-    }
-
-    .banner {
+      }
+      .banner {
         width: 100%;
         max-height: 200px;
         object-fit: cover;
-    }
-
-    .top-bar {
-    background-color: #fff;
-    height: 50px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.header-icons i {
-    font-size: 30px;
-    color: #a0004d;
-    margin-left: 15px;
-    cursor: pointer;
-}
-
-/* Banner principal */
-    .main-banner img {
+      }
+      .top-bar {
+        background-color: #fff;
+        height: 50px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .main-banner img {
         width: 100%;
-        /*display: block;*/
         height: 70%;
-    }
-    .produtos-section {
-      padding: 10px 10px;
-      text-align: center;
-    }
-
-    .produtos-section h2 {
-      color: #c51e64;
-      font-size: 50px;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-
-    .produtos {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); 
-      gap: 15px;
-      justify-items: center;
-      align-items: center;
-      justify-content: center; 
-      margin: 0 auto;          
-      max-width: 1000px;        
-    }
-
-    .produto {
-      background: linear-gradient(#fddbe8, #f4a7c1);
-      padding: 15px;
-      border-radius: 10px;
-      width: 180px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .produto img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .produto p {
-      margin: 10px 0 0;
-      color: #c51e64;
-      font-weight: bold;
-    }
-
-    footer {
-      background-color: #fcd2e4;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .footer-logo {
-      font-size: 15px;
-      color: #c51e64;
-      text-align: center;
-    }
-
-    .bandeiras-cartoes img {
-      height: 100px;
-      margin-left: 35px;
-    }
-
-    .bandeiras-cartoes {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 600px) {
-    .produtos {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 400px;
-  }
-}
-  </style>
-</head>
-<body class="bg-gradient-to-br from-pink-100 to-pink-300 min-h-screen flex flex-col items-center"> 
-        <header class="main-banner">
-          <div class="header-icons top-bar">
-           <a href="produtos.html"><i class="fas fa-home"></i></a>
-            <a href="minha-conta.html"><i class="fas fa-user"></i></a>
-            <a href= "pagamento.html"><i class="fas fa-shopping-cart"></i></a>
+      }
+      .produtos-section {
+        padding: 10px 10px;
+        text-align: center;
+      }
+      .produtos-section h2 {
+        color: #c51e64;
+        font-size: 50px;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      .produtos {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 1000px;
+      }
+      .produto {
+        background: linear-gradient(#fddbe8, #f4a7c1);
+        padding: 15px;
+        border-radius: 10px;
+        width: 180px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.1s;
+      }
+      .produto:hover {
+        transform: scale(1.03);
+      }
+      .produto img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .produto p {
+        margin: 10px 0 0;
+        color: #c51e64;
+        font-weight: bold;
+      }
+      footer {
+        background-color: #fcd2e4;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .footer-logo {
+        font-size: 15px;
+        color: #c51e64;
+        text-align: center;
+      }
+      .bandeiras-cartoes img {
+        height: 100px;
+        margin-left: 35px;
+      }
+      .bandeiras-cartoes {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 600px) {
+        .produtos {
+          grid-template-columns: repeat(2, 1fr);
+          max-width: 400px;
+        }
+      }
+      /* Modal Styles */
+      .modal-bg {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        z-index: 1001;
+        justify-content: center;
+        align-items: center;
+      }
+      .modal-bg.active {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-banner">
+      <div class="header-icons top-bar">
+        <a href="produtos.html"><i class="fas fa-home"></i></a>
+        <a href="minha-conta.html"><i class="fas fa-user"></i></a>
+        <a href="javascript:void(0);" id="cart-icon" class="relative">
+          <i class="fas fa-shopping-cart"></i>
+          <span
+            id="item-count"
+            class="absolute -top-2 -right-3 bg-pink-500 text-white text-xs rounded-full px-2"
+            >0</span
+          >
+        </a>
+      </div>
+      <img src="/assets/banner2.png" alt="MarjuSousplat Crochê" />
+    </header>
+    <main id="main-content">
+      <section class="produtos-section">
+        <h2>PRODUTOS</h2>
+        <br /><br />
+        <div class="produtos">
+          <div
+            class="produto"
+            data-nome="Produto 1"
+            data-preco="29.90"
+            data-img="/assets/logo_1.jpg"
+          >
+            <img src="/assets/logo_1.jpg" alt="Produto 1" />
+            <div class="flex flex-col items-center mt-2">
+              <span class="text-pink-700 font-bold text-lg">R$ 29,90</span>
+              <button
+                class="comprar-btn mt-2 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded transition"
+              >
+                COMPRAR
+              </button>
+            </div>
+          </div>
+          <div
+            class="produto"
+            data-nome="Produto 2"
+            data-preco="100.00"
+            data-img="/assets/prod22.jpg"
+          >
+            <img src="/assets/prod22.jpg" alt="Produto 2" />
+            <div class="flex flex-col items-center mt-2">
+              <span class="text-pink-700 font-bold text-lg">R$ 100,00</span>
+              <button
+                class="comprar-btn mt-2 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded transition"
+              >
+                COMPRAR
+              </button>
+            </div>
+          </div>
+          <div
+            class="produto"
+            data-nome="Produto 3"
+            data-preco="46.00"
+            data-img="/assets/prod33.jpeg"
+          >
+            <img src="/assets/prod33.jpeg" alt="Produto 3" />
+            <div class="flex flex-col items-center mt-2">
+              <span class="text-pink-700 font-bold text-lg">R$ 46,00</span>
+              <button
+                class="comprar-btn mt-2 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded transition"
+              >
+                COMPRAR
+              </button>
+            </div>
+          </div>
+          <div
+            class="produto"
+            data-nome="Produto 4"
+            data-preco="119.99"
+            data-img="/assets/prod4.jpg"
+          >
+            <img src="/assets/prod4.jpg" alt="Produto 4" />
+            <div class="flex flex-col items-center mt-2">
+              <span class="text-pink-700 font-bold text-lg">R$ 119,99</span>
+              <button
+                class="comprar-btn mt-2 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded transition"
+              >
+                COMPRAR
+              </button>
+            </div>
+          </div>
+          <div
+            class="produto"
+            data-nome="Produto 5"
+            data-preco="190.00"
+            data-img="/assets/prod5.jpg"
+          >
+            <img src="/assets/prod5.jpg" alt="Produto 5" />
+            <div class="flex flex-col items-center mt-2">
+              <span class="text-pink-700 font-bold text-lg">R$ 190,00</span>
+              <button
+                class="comprar-btn mt-2 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded transition"
+              >
+                COMPRAR
+              </button>
+            </div>
+          </div>
+          <div
+            class="produto"
+            data-nome="Produto 6"
+            data-preco="200.00"
+            data-img="/assets/prod6.jpg"
+          >
+            <img src="/assets/prod6.jpg" alt="Produto 6" />
+            <div class="flex flex-col items-center mt-2">
+              <span class="text-pink-700 font-bold text-lg">R$ 200,00</span>
+              <button
+                class="comprar-btn mt-2 bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded transition"
+              >
+                COMPRAR
+              </button>
+            </div>
+          </div>
         </div>
-          <img src="/assets/banner2.png" alt="MarjuSousplat Crochê">
-        </header>
-  <main>
-    <section class="produtos-section">
-      <h2>PRODUTOS</h2><br><br>
-      <div class="produtos">
-        <div class="produto">
-          <img src="/assets/logo_1.jpg" alt="Produto 1" />
-          <p>R$ 29,90 <i class="fas fa-shopping-cart"></i></p>
+      </section>
+    </main>
+
+    <div id="cart-modal-bg" class="modal-bg">
+      <div class="bg-white rounded-lg shadow-lg p-6 w-80 relative">
+        <button
+          onclick="closeCart()"
+          class="absolute top-2 right-2 text-gray-400 hover:text-pink-500 text-xl"
+        >
+          &times;
+        </button>
+        <h2 class="text-lg font-bold mb-4 text-pink-700">
+          Carrinho de Compras
+        </h2>
+        <div id="cart-items" class="mb-4 text-left text-gray-700">
+          Você não tem itens no carrinho.
         </div>
-        <div class="produto">
-          <img src="/assets/prod22.jpg" alt="Produto 2" />
-          <p>R$ 100,00 <i class="fas fa-shopping-cart"></i> </p>
-        </div>
-        <div class="produto">
-          <img src="/assets/prod33.jpeg" alt="Produto 3" />
-          <p>R$ 46,00 <i class="fas fa-shopping-cart"></i></p>
-        </div>
-        <div class="produto">
-          <img src="/assets/prod4.jpg" alt="Produto 4" />
-          <p>R$ 119,99 <i class="fas fa-shopping-cart"></i></p>
-        </div>
-        <div class="produto">
-          <img src="/assets/prod5.jpg" alt="Produto 5" />
-          <p>R$ 190,00 <i class="fas fa-shopping-cart"></i></p>
-        </div>
-        <div class="produto">
-          <img src="/assets/prod6.jpg" alt="Produto 6" />
-          <p>R$ 200,00 <i class="fas fa-shopping-cart"></i></p>
+        <button
+          onclick="redirectToPayment()"
+          class="w-full bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition mb-2"
+        >
+          Finalizar Compra
+        </button>
+        <button
+          onclick="closeCart()"
+          class="w-full bg-gray-200 text-black px-4 py-2 rounded hover:bg-gray-300 transition"
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
+
+    <div id="product-modal-bg" class="modal-bg">
+      <div
+        id="product-modal"
+        class="bg-pink-50 rounded-lg shadow-lg p-8 w-full max-w-2xl relative flex flex-col md:flex-row items-center md:items-start gap-8"
+      >
+        <button
+          onclick="closeProductModal()"
+          class="absolute top-2 right-2 text-gray-400 hover:text-pink-500 text-2xl leading-none"
+        >
+          &times;
+        </button>
+        <img
+          id="modal-product-img"
+          src=""
+          alt=""
+          class="w-64 h-64 object-cover rounded-lg border border-pink-200 bg-white"
+        />
+        <div class="flex-1 flex flex-col gap-2">
+          <h2
+            id="modal-product-title"
+            class="text-3xl font-bold text-pink-700 mb-2"
+          ></h2>
+          <div class="flex items-center mb-2">
+            <span class="font-bold text-pink-700 mr-2">Tamanho:</span>
+            <select
+              id="modal-product-size"
+              class="rounded px-2 py-1 border border-pink-300 focus:ring-pink-400 focus:border-pink-400 text-pink-700"
+            >
+              <option>70 x 48</option>
+              <option>80 x 50</option>
+              <option>90 x 60</option>
+            </select>
+            <span class="ml-2 text-pink-700">cm</span>
+          </div>
+          <div class="flex items-center mb-2">
+            <span class="font-bold text-pink-700 mr-2">Cor:</span>
+            <select
+              id="modal-product-color"
+              class="rounded px-2 py-1 border border-pink-300 focus:ring-pink-400 focus:border-pink-400 text-pink-700"
+            >
+              <option>Rosa</option>
+              <option>Vermelho</option>
+              <option>Azul</option>
+              <option>Bege</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <span
+              id="modal-product-price"
+              class="inline-block bg-white text-pink-700 font-bold text-2xl px-3 py-1 rounded shadow"
+            >
+              R$ 0,00
+            </span>
+            <div
+              id="modal-product-parcel"
+              class="text-xs text-pink-700 mt-1"
+            ></div>
+          </div>
+          <button
+            id="modal-add-cart"
+            class="w-full bg-pink-600 text-white font-bold py-3 rounded-lg mt-2 hover:bg-pink-700 transition text-lg"
+          >
+            ADICIONAR AO CARRINHO
+          </button>
         </div>
       </div>
-    </section>
-  </main>
-  <br><br><br><br>
-  <footer>
-    <div class="footer-logo">
-      <img src="/assets/logo redondo.png" alt="Logo Redonda" style="height: 100px; height: 100px" /> 
-      <br> Feito com amor 💕
     </div>
-    <div class="bandeiras-cartoes">
-      <img src="/assets/image-removebg-preview.png" alt="Bandeiras de Cartões" />
-    </div>
-  </footer>
 
-</body>
+    <footer>
+      <div class="footer-logo">
+        <img
+          src="/assets/logo redondo.png"
+          alt="Logo Redonda"
+          style="height: 100px; height: 100px"
+        />
+        <br />
+        Feito com amor 💕
+      </div>
+      <div class="bandeiras-cartoes">
+        <img
+          src="/assets/image-removebg-preview.png"
+          alt="Bandeiras de Cartões"
+        />
+      </div>
+    </footer>
+    <script>
+      let cart = JSON.parse(localStorage.getItem("marju_cart")) || [];
+
+      function updateCartCount() {
+        const count = cart.reduce((sum, item) => sum + item.qtd, 0);
+        document.getElementById("item-count").innerText = count;
+      }
+      function updateCartModal() {
+        const cartItemsDiv = document.getElementById("cart-items");
+        if (cart.length === 0) {
+          cartItemsDiv.innerHTML = "Você não tem itens no carrinho.";
+          return;
+        }
+        let html = '<ul class="mb-2">';
+        let total = 0;
+        cart.forEach((item, idx) => {
+          total += item.qtd * item.preco;
+          html += `
+            <li class="flex items-center justify-between mb-2">
+              <div class="flex items-center">
+                <img src="${item.img}" alt="${
+            item.nome
+          }" class="w-10 h-10 rounded mr-2 border" />
+                <span>${item.nome}</span>
+              </div>
+              <div>
+                <button onclick="changeQtd(${idx}, -1)" class="px-2 text-pink-500 font-bold">-</button>
+                <span>${item.qtd}</span>
+                <button onclick="changeQtd(${idx}, 1)" class="px-2 text-pink-500 font-bold">+</button>
+              </div>
+              <span class="ml-2">R$ ${(item.preco * item.qtd).toFixed(2)}</span>
+            </li>
+          `;
+        });
+        html += `</ul>
+          <div class="font-bold text-right text-pink-700">Total: R$ ${total.toFixed(
+            2
+          )}</div>`;
+        cartItemsDiv.innerHTML = html;
+      }
+
+      function addToCart(produto) {
+        const nome = produto.getAttribute("data-nome");
+        const preco = parseFloat(produto.getAttribute("data-preco"));
+        const img = produto.getAttribute("data-img");
+        const idx = cart.findIndex((item) => item.nome === nome);
+        if (idx > -1) {
+          cart[idx].qtd += 1;
+        } else {
+          cart.push({ nome, preco, img, qtd: 1 });
+        }
+        localStorage.setItem("marju_cart", JSON.stringify(cart));
+        updateCartCount();
+        updateCartModal();
+      }
+
+      function changeQtd(idx, delta) {
+        cart[idx].qtd += delta;
+        if (cart[idx].qtd <= 0) cart.splice(idx, 1);
+        localStorage.setItem("marju_cart", JSON.stringify(cart));
+        updateCartCount();
+        updateCartModal();
+      }
+
+      function openCart() {
+        document.getElementById("cart-modal-bg").classList.add("active");
+        document.body.style.overflow = "hidden";
+        updateCartModal();
+      }
+
+      function closeCart() {
+        document.getElementById("cart-modal-bg").classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      function redirectToPayment() {
+        window.location.href = "pagamento.html";
+      }
+
+      function openProductModal(produto) {
+        const nome = produto.getAttribute("data-nome");
+        const preco = parseFloat(produto.getAttribute("data-preco"));
+        const img = produto.getAttribute("data-img");
+        document.getElementById("modal-product-img").src = img;
+        document.getElementById("modal-product-img").alt = nome;
+        document.getElementById("modal-product-title").textContent = nome;
+        document.getElementById("modal-product-price").textContent =
+          "R$ " + preco.toFixed(2).replace(".", ",");
+        document.getElementById(
+          "modal-product-parcel"
+        ).textContent = `ou R$ ${preco
+          .toFixed(2)
+          .replace(".", ",")} em 2x de R$ ${(preco / 2)
+          .toFixed(2)
+          .replace(".", ",")} no cartão`;
+        document.getElementById("product-modal-bg").classList.add("active");
+        document.body.style.overflow = "hidden";
+        document.getElementById("modal-add-cart").onclick = function () {
+          addToCart(produto);
+          closeProductModal();
+        };
+      }
+      function closeProductModal() {
+        document.getElementById("product-modal-bg").classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll(".produto .add-cart").forEach((icon) => {
+        icon.addEventListener("click", function (e) {
+          e.stopPropagation();
+          addToCart(this.closest(".produto"));
+        });
+      });
+      document.getElementById("cart-icon").addEventListener("click", openCart);
+      document.querySelectorAll(".produto").forEach((produto) => {
+        produto.addEventListener("click", function (e) {
+          if (e.target.classList.contains("add-cart")) return;
+          openProductModal(this);
+        });
+      });
+      document.querySelectorAll(".comprar-btn").forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          openProductModal(this.closest(".produto"));
+        });
+      });
+      document.querySelectorAll(".produto").forEach((produto) => {
+        produto.addEventListener("click", function (e) {
+          if (e.target.classList.contains("comprar-btn")) return;
+        });
+      });
+
+      updateCartCount();
+      updateCartModal();
+    </script>
+  </body>
 </html>

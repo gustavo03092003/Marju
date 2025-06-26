@@ -1,118 +1,268 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Pagamento - MarjuSousplat</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-  .top-bar {
-    height: 50px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      .top-bar {
+        height: 50px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
 
-.header-icons i {
-    font-size: 30px;
-    color: #a0004d;
-    margin-left: 15px;
-    cursor: pointer;
-}</style> 
-</head> 
+      .header-icons i {
+        font-size: 30px;
+        color: #a0004d;
+        margin-left: 15px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
 
-  <body class="bg-gradient-to-br from-pink-100 to-pink-300 min-h-screen flex flex-col">
-    <header class="flex items-center px-8 py-0 bg-transparent w-full max-w-6xl mx-auto h-[90px]">
-      <img src="/assets/Logo2.png" alt="Logo" class="h-72 max-w-none">
+  <body
+    class="bg-gradient-to-br from-pink-100 to-pink-300 min-h-screen flex flex-col"
+  >
+    <header
+      class="flex items-center px-8 py-0 bg-transparent w-full max-w-6xl mx-auto h-[90px]"
+    >
+      <img src="/assets/Logo2.png" alt="Logo" class="h-72 max-w-none" />
       <div class="flex-1"></div>
       <header class="main-banner">
-          <div class="header-icons top-bar">
-           <a href="produtos.html"><i class="fas fa-home"></i></a>
-            <a href="minha-conta.html"><i class="fas fa-user"></i></a>
-            <a href= "pagamento.html"><i class="fas fa-shopping-cart"></i></a>
+        <div class="header-icons top-bar">
+          <a href="produtos.html"><i class="fas fa-home"></i></a>
+          <a href="minha-conta.html"><i class="fas fa-user"></i></a>
+          <a href="pagamento.html"><i class="fas fa-shopping-cart"></i></a>
         </div>
-        </header>
+      </header>
     </header>
     <main class="flex-1 flex flex-col items-center justify-center">
-      <div class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 px-4 py-8">
+      <div
+        class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 px-4 py-8"
+      >
         <div class="flex flex-col gap-4 md:col-span-1 h-full">
           <div class="bg-pink-100 rounded-xl p-4 flex flex-col gap-2 shadow">
-            <h2 class="text-pink-600 text-2xl font-bold mb-2 text-center">Identifique-se</h2>
+            <h2 class="text-pink-600 text-2xl font-bold mb-2 text-center">
+              Identifique-se
+            </h2>
             <div class="text-gray-700 text-sm">
               <div>Nome: Fulano</div>
               <div>Email: fulano@gmail.com</div>
               <div>CPF: 123.456.789-12</div>
             </div>
           </div>
-          <div class="bg-pink-100 rounded-xl p-6 flex flex-col gap-2 shadow flex-1 justify-start">
-            <h2 class="text-pink-600 text-2xl font-bold mb-2 text-center">Entrega</h2>
+          <div
+            class="bg-pink-100 rounded-xl p-6 flex flex-col gap-2 shadow flex-1 justify-start"
+          >
+            <h2 class="text-pink-600 text-2xl font-bold mb-2 text-center">
+              Entrega
+            </h2>
             <div class="text-gray-700 text-sm">
-              <span class="font-bold">Endereço para entrega:</span><br>
-              Rua das Rosas - 4 - Centro<br>
-              Complemento: Apt 201<br>
-              Cataguases - MG<br>
+              <span class="font-bold">Endereço para entrega:</span><br />
+              Rua das Rosas - 4 - Centro<br />
+              Complemento: Apt 201<br />
+              Cataguases - MG<br />
               CEP 36770-000
-              <br><br>
-              <span class="font-bold">Forma de Entrega:</span><br>
-              Padrão Econômico - R$ 28.00<br>
+              <br /><br />
+              <span class="font-bold">Forma de Entrega:</span><br />
+              Padrão Econômico - R$ 28.00<br />
               <span class="text-xs text-gray-500">(até 10 dias úteis)</span>
             </div>
           </div>
         </div>
-        <div class="bg-pink-100 rounded-xl p-6 flex flex-col gap-4 shadow md:col-span-2">
-          <h2 class="text-pink-600 text-2xl font-bold mb-2 text-center">Resumo</h2>
+        <div
+          class="bg-pink-100 rounded-xl p-6 flex flex-col gap-4 shadow md:col-span-2"
+        >
+          <h2 class="text-pink-600 text-2xl font-bold mb-2 text-center">
+            Resumo
+          </h2>
           <div class="flex items-center gap-2">
-            <input type="text" placeholder="CÓDIGO" class="flex-1 rounded-lg px-3 py-2 border border-gray-300 focus:outline-pink-400" />
-            <button class="text-pink-600 font-bold hover:underline">Adicionar</button>
+            <input
+              type="text"
+              placeholder="CÓDIGO"
+              class="flex-1 rounded-lg px-3 py-2 border border-gray-300 focus:outline-pink-400"
+            />
+            <button class="text-pink-600 font-bold hover:underline">
+              Adicionar
+            </button>
           </div>
-          <textarea placeholder="Observação da compra" class="rounded-lg px-3 py-2 border border-gray-300 focus:outline-pink-400 resize-none h-16"></textarea>
+          <textarea
+            placeholder="Observação da compra"
+            class="rounded-lg px-3 py-2 border border-gray-300 focus:outline-pink-400 resize-none h-16"
+          ></textarea>
           <div class="text-gray-700 text-base">
-            <div class="flex justify-between"><span>Produtos:</span> <span>R$ 119.99</span></div>
-            <div class="flex justify-between"><span>Descontos:</span> <span>R$ 1.99</span></div>
-            <div class="flex justify-between"><span>Frete:</span> <span>R$28.00</span></div>
-            <div class="flex justify-between font-bold text-lg mt-2"><span>Total:</span> <span class="text-green-600">R$146.00</span></div>
-          </div>
-          <div class="flex items-center gap-3 mt-4 bg-white rounded-lg p-3 border border-gray-200">
-            <img src="/assets/prod5.jpg" alt="Produto" class="w-16 h-16 object-cover rounded-lg border border-gray-200">
-            <div class="flex-1">
-              <div class="font-semibold text-sm">Tapete - Flores<br><span class="text-xs text-gray-500">70x40 cm - Rosa</span></div>
-              <div class="flex items-center gap-2 mt-1">
-                <span class="text-xs">Qtd: 1</span>
-                <span class="font-bold text-pink-600 text-sm">R$ 119.99</span>
-              </div>
-              <div class="flex items-center gap-2 mt-2">
-                <button class="bg-pink-200 text-pink-600 rounded px-2">-</button>
-                <span class="px-2">1</span>
-                <button class="bg-pink-200 text-pink-600 rounded px-2">+</button>
-              </div>
+            <div class="flex justify-between">
+              <span>Produtos:</span>
+              <span class="resumo-produtos">R$ 0,00</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Descontos:</span>
+              <span class="resumo-descontos">R$ 1,99</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Frete:</span> <span class="resumo-frete">R$28,00</span>
+            </div>
+            <div class="flex justify-between font-bold text-lg mt-2">
+              <span>Total:</span>
+              <span class="resumo-total text-green-600">R$ 0,00</span>
             </div>
           </div>
+          <div id="produtos-lista"></div>
         </div>
-        <div class="bg-pink-100 rounded-xl p-6 flex flex-col gap-4 shadow md:col-span-1">
-          <h2 class="text-pink-600 text-2xl font-bold mb-2 text-center">Pagamento</h2>
-          <div class="text-gray-700 mb-2 text-center">Escolha uma Forma de Pagamento:</div>
-          <form class="flex flex-col gap-4">
-            <label class="flex items-center bg-white rounded-lg px-4 py-3 cursor-pointer border border-gray-200">
-              <input type="radio" name="pagamento" class="form-radio text-pink-600 mr-3" />
+        <div
+          class="bg-pink-100 rounded-xl p-6 flex flex-col gap-4 shadow md:col-span-1"
+        >
+          <h2 class="text-pink-600 text-2xl font-bold mb-2 text-center">
+            Pagamento
+          </h2>
+          <div class="text-gray-700 mb-2 text-center">
+            Escolha uma Forma de Pagamento:
+          </div>
+          <form class="flex flex-col gap-4" onsubmit="finalizarPedido(event)">
+            <label
+              class="flex items-center bg-white rounded-lg px-4 py-3 cursor-pointer border border-gray-200"
+            >
+              <input
+                type="radio"
+                name="pagamento"
+                class="form-radio text-pink-600 mr-3"
+              />
               <span class="text-lg">Cartão de Crédito</span>
             </label>
-            <label class="flex items-center bg-white rounded-lg px-4 py-3 cursor-pointer border border-gray-200">
-              <input type="radio" name="pagamento" class="form-radio text-pink-600 mr-3" />
+            <label
+              class="flex items-center bg-white rounded-lg px-4 py-3 cursor-pointer border border-gray-200"
+            >
+              <input
+                type="radio"
+                name="pagamento"
+                class="form-radio text-pink-600 mr-3"
+              />
               <span class="text-lg">PIX</span>
             </label>
-            <label class="flex items-center bg-white rounded-lg px-4 py-3 cursor-pointer border border-gray-200">
-              <input type="radio" name="pagamento" checked class="form-radio text-pink-600 mr-3" />
+            <label
+              class="flex items-center bg-white rounded-lg px-4 py-3 cursor-pointer border border-gray-200"
+            >
+              <input
+                type="radio"
+                name="pagamento"
+                checked
+                class="form-radio text-pink-600 mr-3"
+              />
               <span class="text-lg">Boleto</span>
             </label>
-            <button type="submit" class="mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg text-lg transition">Finalizar compra</button>
+            <button
+              type="button"
+              onclick="finalizarPedido(event)"
+              class="mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg text-lg transition"
+            >
+              Finalizar compra
+            </button>
           </form>
         </div>
       </div>
     </main>
+    <script>
+      function formatPrice(valor) {
+        return "R$ " + valor.toFixed(2).replace(".", ",");
+      }
+
+      function getCart() {
+        try {
+          return JSON.parse(localStorage.getItem("marju_cart")) || [];
+        } catch {
+          return [];
+        }
+      }
+
+      function renderCart() {
+        const cart = getCart();
+        let produtosTotal = 0;
+        let desconto = 1.99;
+        let frete = 28.0;
+        let totalQtd = 0;
+
+        cart.forEach((item) => {
+          produtosTotal += item.preco * item.qtd;
+          totalQtd += item.qtd;
+        });
+
+        document
+          .querySelectorAll(".resumo-produtos")
+          .forEach((el) => (el.textContent = formatPrice(produtosTotal)));
+        document
+          .querySelectorAll(".resumo-descontos")
+          .forEach((el) => (el.textContent = formatPrice(desconto)));
+        document
+          .querySelectorAll(".resumo-frete")
+          .forEach((el) => (el.textContent = formatPrice(frete)));
+        document
+          .querySelectorAll(".resumo-total")
+          .forEach(
+            (el) =>
+              (el.textContent = formatPrice(produtosTotal - desconto + frete))
+          );
+
+        const produtosDiv = document.getElementById("produtos-lista");
+        produtosDiv.innerHTML = "";
+        cart.forEach((item) => {
+          const div = document.createElement("div");
+          div.className =
+            "flex items-center gap-3 mt-4 bg-white rounded-lg p-3 border border-gray-200";
+          div.innerHTML = `
+            <img src="${item.img}" alt="${
+            item.nome
+          }" class="w-16 h-16 object-cover rounded-lg border border-gray-200" />
+            <div class="flex-1">
+              <div class="font-semibold text-sm">
+                ${item.nome}<br>
+                <span class="text-xs text-gray-500">${item.tamanho || ""} ${
+            item.cor ? "- " + item.cor : ""
+          }</span>
+              </div>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="text-xs">Qtd: ${item.qtd}</span>
+                <span class="font-bold text-pink-600 text-sm">${formatPrice(
+                  item.preco
+                )}</span>
+              </div>
+            </div>
+          `;
+          produtosDiv.appendChild(div);
+        });
+      }
+      window.addEventListener("DOMContentLoaded", renderCart);
+
+      function finalizarPedido(e) {
+        if (e) e.preventDefault();
+        const cart = JSON.parse(localStorage.getItem("marju_cart")) || [];
+        if (!cart.length) return;
+        let total = cart.reduce((s, i) => s + i.preco * i.qtd, 0) - 1.99 + 28.0;
+        const pedido = {
+          data: new Date().toISOString(),
+          itens: cart,
+          total,
+        };
+        let pedidos = [];
+        try {
+          pedidos = JSON.parse(localStorage.getItem("marju_pedidos")) || [];
+        } catch {
+          pedidos = [];
+        }
+        pedidos.unshift(pedido);
+        localStorage.setItem("marju_pedidos", JSON.stringify(pedidos));
+        localStorage.removeItem("marju_cart");
+        window.location.href = "produtos.html";
+      }
+    </script>
   </body>
 </html>
