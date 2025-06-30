@@ -116,6 +116,55 @@
       .submit-btn:hover {
         background-color: #a0154e;
       }
+
+      /* Modal Estilo */
+      #forgotPasswordModal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+      }
+
+      #forgotPasswordModal .modal-content {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      #forgotPasswordModal input {
+        padding: 12px;
+        width: 100%;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+      }
+
+      #forgotPasswordModal button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+
+      #forgotPasswordModal .cancel-btn {
+        background: #ccc;
+        color: #333;
+        margin-right: 10px;
+      }
+
+      #forgotPasswordModal .send-btn {
+        background: #c51e64;
+        color: white;
+      }
     </style>
   </head>
   <body>
@@ -140,15 +189,10 @@
             placeholder="Senha"
             required
           />
-          <div
-            class="forgot-password"
-            onclick="alert('Funcionalidade de recuperação ainda não implementada.')"
-          >
+          <div class="forgot-password" onclick="openModal()">
             Esqueci minha senha
           </div>
-          <a href="minha-conta.html">
-            <button class="submit-btn" type="submit">ENTRAR</button>
-          </a>
+          <button class="submit-btn" type="submit">ENTRAR</button>
         </form>
 
         <form id="cadastro">
@@ -175,6 +219,18 @@
           />
           <button class="submit-btn" type="submit">CADASTRAR</button>
         </form>
+      </div>
+    </div>
+
+    <!-- Modal de Esqueci minha senha -->
+    <div id="forgotPasswordModal">
+      <div class="modal-content">
+        <h3 style="margin-bottom: 20px; color: #c51e64;">Recuperar Senha</h3>
+        <input type="email" id="recoveryEmail" placeholder="Digite seu e-mail" required />
+        <div style="display: flex; justify-content: space-between;">
+          <button class="cancel-btn" onclick="closeModal()">Cancelar</button>
+          <button class="send-btn" onclick="sendRecoveryEmail()">Enviar</button>
+        </div>
       </div>
     </div>
 
@@ -219,21 +275,38 @@
             .value.trim();
           const email = document.getElementById("cadastroEmail").value.trim();
 
-          // Validação simples do CPF (só 11 dígitos)
           const cpfRegex = /^\d{11}$/;
           if (!cpfRegex.test(cpf)) {
             alert("Por favor, insira um CPF válido com 11 números.");
             return;
           }
 
-          // Você pode adicionar mais validações e integração backend aqui
           alert(
             `Cadastro realizado com sucesso!\nNome: ${nome}\nCPF: ${cpf}\nEmail: ${email}`
           );
-          // Limpar formulário após cadastro
           this.reset();
           showForm("login");
         });
+
+      // Modal Functions
+      function openModal() {
+        document.getElementById("forgotPasswordModal").style.display = "flex";
+      }
+
+      function closeModal() {
+        document.getElementById("forgotPasswordModal").style.display = "none";
+        document.getElementById("recoveryEmail").value = "";
+      }
+
+      function sendRecoveryEmail() {
+        const email = document.getElementById("recoveryEmail").value.trim();
+        if (!email) {
+          alert("Por favor, insira seu e-mail.");
+          return;
+        }
+        alert("Um link de recuperação foi enviado para: " + email);
+        closeModal();
+      }
     </script>
   </body>
 </html>

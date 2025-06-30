@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Minha Conta - MarjuSousplat</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
       .tab {
         transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
@@ -43,7 +40,6 @@
         align-items: center;
         flex-wrap: wrap;
         width: 100%;
-        position: end;
       }
 
       .footer-logo {
@@ -53,380 +49,182 @@
       }
     </style>
   </head>
-  <body
-    class="bg-gradient-to-br from-pink-100 to-pink-300 min-h-screen flex flex-col items-center"
-  >
-    <header>
-      <header class="w-screen bg-pink-200 p-4">
-        <marquee
-          behavior="scroll"
-          direction="left"
-          scrollamount="5"
-          class="text-pink-700 font-bold text-xl"
-        >
-          MarjuSousplat Crochê - Feito com amor 💕 | Promoções especiais toda
-          semana! | Frete grátis acima de R$100!
-        </marquee>
-      </header>
+  <body class="bg-gradient-to-br from-pink-100 to-pink-300 min-h-screen flex flex-col items-center">
+    <header class="w-screen bg-pink-200 p-4">
+      <marquee behavior="scroll" direction="left" scrollamount="5" class="text-pink-700 font-bold text-xl">
+        MarjuSousplat Crochê - Feito com amor 💕 | Promoções especiais toda semana! | Frete grátis acima de R$100!
+      </marquee>
+    </header>
 
-      <header class="main-banner">
-        <div class="header-icons top-bar">
-          <a href="produtos.html"><i class="fas fa-home"></i></a>
-          <a href="minha-conta.html"><i class="fas fa-user"></i></a>
-          <a href="pagamento.html"><i class="fas fa-shopping-cart"></i></a>
-        </div>
-      </header>
+    <header class="main-banner">
+      <div class="header-icons top-bar">
+        <a href="produtos.html"><i class="fas fa-home"></i></a>
+        <a href="minha-conta.html"><i class="fas fa-user"></i></a>
+        <a href="pagamento.html"><i class="fas fa-shopping-cart"></i></a>
+      </div>
     </header>
-    <header>
-      <center>
-        <img
-          src="/assets/logoo-removebg-preview.png"
-          alt="MarjuSousplat Crochê"
-          style="height: 280px"
-        />
-      </center>
-    </header>
-    <div
-      class="w-full max-w-2xl bg-white rounded-xl shadow-lg overflow-hidden mt-6 mb-16"
-    >
+
+    <center><img src="/assets/logoo-removebg-preview.png" alt="MarjuSousplat Crochê" style="height: 280px"></center>
+
+    <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg overflow-hidden mt-6">
       <div class="flex">
-        <button
-          id="btnConta"
-          class="tab flex-1 py-2 text-center bg-pink-500 text-white font-semibold"
-        >
-          Minha Conta
-        </button>
-        <button
-          id="btnPedidos"
-          class="tab flex-1 py-2 text-center bg-pink-200 text-pink-600 font-semibold"
-        >
-          Meus Pedidos
-        </button>
+        <button id="btnConta" class="tab flex-1 py-2 text-center bg-pink-500 text-white font-semibold">Minha Conta</button>
+        <button id="btnPedidos" class="tab flex-1 py-2 text-center bg-pink-200 text-pink-600 font-semibold">Meus Pedidos</button>
       </div>
 
+      <!-- Minha Conta -->
       <form id="tabConta" class="bg-pink-100 p-6 space-y-4">
         <div>
-          <label for="nome" class="sr-only">Nome</label>
-          <input
-            type="text"
-            id="nome"
-            name="nome"
-            placeholder="Nome"
-            required
-            class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300"
-          />
+          <input type="text" id="nome" name="nome" placeholder="Nome" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300">
         </div>
-
         <div>
-          <label for="email" class="sr-only">E-mail</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="E-mail"
-            required
-            class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300"
-          />
+          <input type="email" id="email" name="email" placeholder="E-mail" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300">
         </div>
-
         <div>
-          <label for="cpf" class="sr-only">CPF</label>
-          <input
-            type="text"
-            id="cpf"
-            name="cpf"
-            placeholder="CPF"
-            required
-            class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300"
-            disabled=""
-          />
+          <input type="text" id="cpf" name="cpf" placeholder="CPF" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300" disabled>
         </div>
-
         <div class="flex space-x-2">
-          <div>
-            <label for="cep" class="sr-only">CEP</label>
-            <input
-              type="text"
-              id="cep"
-              name="cep"
-              placeholder="CEP"
-              required
-              class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300"
-            />
-          </div>
-          <div>
-            <label for="estado" class="sr-only">Estado</label>
-            <input
-              type="text"
-              id="estado"
-              name="estado"
-              placeholder="Estado"
-              required
-              class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300"
-            />
-          </div>
+          <input type="text" id="cep" name="cep" placeholder="CEP" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300">
+          <input type="text" id="estado" name="estado" placeholder="Estado" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300">
         </div>
-
         <div>
-          <label for="rua" class="sr-only">Rua</label>
-          <input
-            type="text"
-            id="rua"
-            name="rua"
-            placeholder="Rua"
-            required
-            class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300"
-          />
+          <input type="text" id="rua" name="rua" placeholder="Rua" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300">
         </div>
-
         <div class="flex space-x-2">
-          <div>
-            <label for="cidade" class="sr-only">Cidade</label>
-            <input
-              type="text"
-              id="cidade"
-              name="cidade"
-              placeholder="Cidade"
-              required
-              class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300"
-            />
-          </div>
-          <div>
-            <label for="numero" class="sr-only">Número</label>
-            <input
-              type="text"
-              id="numero"
-              name="numero"
-              placeholder="Número"
-              required
-              class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300"
-            />
-          </div>
-          <div>
-            <label for="complemento" class="sr-only">Complemento</label>
-            <input
-              type="text"
-              id="complemento"
-              name="complemento"
-              placeholder="Complemento"
-              class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300"
-            />
-          </div>
+          <input type="text" id="cidade" name="cidade" placeholder="Cidade" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300">
+          <input type="text" id="numero" name="numero" placeholder="Número" required class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300">
+          <input type="text" id="complemento" name="complemento" placeholder="Complemento" class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300">
         </div>
-
         <div class="flex justify-center space-x-4 pt-4">
-          <button
-            type="submit"
-            class="submit-btn bg-pink-500 text-white font-semibold px-6 py-2 rounded hover:bg-pink-600"
-          >
-            Atualizar
-          </button>
-          <button
-            type="reset"
-            class="bg-pink-400 text-white font-semibold px-6 py-2 rounded hover:bg-pink-500"
-          >
-            Cancelar
-          </button>
-        </div>
-
-        <div class="text-center">
-          <a
-            href="recuperar-senha.html"
-            class="text-sm text-pink-600 hover:underline"
-            >Esqueci minha senha</a
-          >
+          <button type="submit" class="submit-btn bg-pink-500 text-white font-semibold px-6 py-2 rounded hover:bg-pink-600">Atualizar</button>
+          <button type="reset" class="bg-pink-400 text-white font-semibold px-6 py-2 rounded hover:bg-pink-500">Cancelar</button>
         </div>
       </form>
 
       <!-- Meus Pedidos -->
       <div id="tabPedidos" class="hidden bg-pink-100 p-6 space-y-6">
-        <div
-          id="pedidos-lista"
-          class="text-center text-pink-700 font-semibold text-lg py-8"
-        >
-          Nenhum pedido feito.
+        <div class="bg-white p-4 rounded shadow">
+          <p class="text-pink-700 font-semibold">Pedido nº 147377424</p>
+          <div class="flex items-center space-x-2 py-2">
+            <img src="/assets/prod6.jpg" alt="produto" class="rounded" style="height: 100px;">
+            <img src="/assets/prod5.jpg" alt="produto" class="rounded" style="height: 100px;">
+          </div>
+          <div class="flex space-x-2">
+            <button class="btn-detalhes bg-pink-500 text-white text-sm px-4 py-1 rounded hover:bg-pink-600">Ver detalhes</button>
+            <button class="btn-comprar bg-pink-500 text-white text-sm px-4 py-1 rounded hover:bg-pink-600">Comprar novamente</button>
+          </div>
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <p class="text-pink-700 font-semibold">Pedido nº 165377424</p>
+          <div class="flex items-center space-x-2 py-2">
+            <img src="/assets/prod22.jpg" alt="produto" class="rounded" style="height: 100px;">
+            <img src="/assets/prod33.jpeg" alt="produto" class="rounded" style="height: 100px;">
+          </div>
+          <div class="flex space-x-2">
+            <button class="btn-detalhes bg-pink-500 text-white text-sm px-4 py-1 rounded hover:bg-pink-600">Ver detalhes</button>
+            <button class="btn-comprar bg-pink-500 text-white text-sm px-4 py-1 rounded hover:bg-pink-600">Comprar novamente</button>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Modal -->
-    <div
-      id="modal"
-      class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50"
-    >
+    <div id="modal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50">
       <div class="bg-white p-6 rounded shadow-lg text-center">
-        <h2 id="modalTitle" class="text-xl font-semibold text-pink-600 mb-4">
-          Título
-        </h2>
+        <h2 id="modalTitle" class="text-xl font-semibold text-pink-600 mb-4">Título</h2>
         <p id="modalMessage" class="mb-6 text-gray-700">Mensagem do modal.</p>
-        <button
-          id="closeModal"
-          class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600"
-        >
-          Fechar
-        </button>
+        <button id="closeModal" class="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Fechar</button>
       </div>
     </div>
-    <br /><br />
+
+    <br><br>
+
     <footer>
       <div class="footer-logo">
-        <img
-          src="/assets/logo redondo.png"
-          alt="Logo Redonda"
-          style="height: 100px; height: 100px"
-        />
-        <br />
-        Feito com amor 💕
+        <img src="/assets/logo redondo.png" alt="Logo Redonda" style="height: 100px;" />
+        <br> Feito com amor 💕
       </div>
     </footer>
 
     <script>
-      const btnConta = document.getElementById("btnConta");
-      const btnPedidos = document.getElementById("btnPedidos");
-      const tabConta = document.getElementById("tabConta");
-      const tabPedidos = document.getElementById("tabPedidos");
-      const modal = document.getElementById("modal");
-      const modalTitle = document.getElementById("modalTitle");
-      const modalMessage = document.getElementById("modalMessage");
-      const closeModal = document.getElementById("closeModal");
+      const btnConta = document.getElementById('btnConta');
+      const btnPedidos = document.getElementById('btnPedidos');
+      const tabConta = document.getElementById('tabConta');
+      const tabPedidos = document.getElementById('tabPedidos');
+      const modal = document.getElementById('modal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalMessage = document.getElementById('modalMessage');
+      const closeModal = document.getElementById('closeModal');
 
-      btnConta.addEventListener("click", () => {
-        tabConta.classList.remove("hidden");
-        tabPedidos.classList.add("hidden");
-        btnConta.classList.add("bg-pink-500", "text-white");
-        btnConta.classList.remove("bg-pink-200", "text-pink-600");
-        btnPedidos.classList.remove("bg-pink-500", "text-white");
-        btnPedidos.classList.add("bg-pink-200", "text-pink-600");
+      btnConta.addEventListener('click', () => {
+        tabConta.classList.remove('hidden');
+        tabPedidos.classList.add('hidden');
+        btnConta.classList.add('bg-pink-500', 'text-white');
+        btnConta.classList.remove('bg-pink-200', 'text-pink-600');
+        btnPedidos.classList.remove('bg-pink-500', 'text-white');
+        btnPedidos.classList.add('bg-pink-200', 'text-pink-600');
       });
 
-      btnPedidos.addEventListener("click", () => {
-        tabPedidos.classList.remove("hidden");
-        tabConta.classList.add("hidden");
-        btnPedidos.classList.add("bg-pink-500", "text-white");
-        btnPedidos.classList.remove("bg-pink-200", "text-pink-600");
-        btnConta.classList.remove("bg-pink-500", "text-white");
-        btnConta.classList.add("bg-pink-200", "text-pink-600");
+      btnPedidos.addEventListener('click', () => {
+        tabPedidos.classList.remove('hidden');
+        tabConta.classList.add('hidden');
+        btnPedidos.classList.add('bg-pink-500', 'text-white');
+        btnPedidos.classList.remove('bg-pink-200', 'text-pink-600');
+        btnConta.classList.remove('bg-pink-500', 'text-white');
+        btnConta.classList.add('bg-pink-200', 'text-pink-600');
       });
 
-      document.querySelectorAll(".btn-detalhes").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          modalTitle.textContent = "Detalhes do Pedido";
-          modalMessage.textContent =
-            "Aqui você pode ver todas as informações detalhadas do pedido.";
-          modal.classList.remove("hidden");
-          modal.classList.add("flex");
+      document.querySelectorAll('.btn-detalhes').forEach(btn => {
+        btn.addEventListener('click', () => {
+          modalTitle.textContent = 'Detalhes do Pedido';
+          modalMessage.textContent = 'Aqui você pode ver todas as informações detalhadas do pedido.';
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
         });
       });
 
-      document.querySelectorAll(".btn-comprar").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          modalTitle.textContent = "Compra Realizada!";
-          modalMessage.textContent =
-            "O pedido foi adicionado novamente ao carrinho.";
-          modal.classList.remove("hidden");
-          modal.classList.add("flex");
+      document.querySelectorAll('.btn-comprar').forEach(btn => {
+        btn.addEventListener('click', () => {
+          modalTitle.textContent = 'Compra Realizada!';
+          modalMessage.textContent = 'O pedido foi adicionado novamente ao carrinho.';
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
         });
       });
 
-      closeModal.addEventListener("click", () => {
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
+      closeModal.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
       });
 
-      document
-        .querySelector(".submit-btn")
-        .addEventListener("click", function (e) {
-          this.disabled = true;
-          this.innerText = "Atualizando...";
-        });
+      document.querySelector('.submit-btn').addEventListener('click', function (e) {
+        this.disabled = true;
+        this.innerText = 'Atualizando...';
+      });
 
-      document.getElementById("cep").addEventListener("blur", function () {
-        const cep = this.value.replace(/\D/g, "");
+      document.getElementById('cep').addEventListener('blur', function () {
+        const cep = this.value.replace(/\D/g, '');
 
         if (cep.length !== 8) {
-          alert("CEP inválido. Digite os 8 números do CEP.");
+          alert('CEP inválido. Digite os 8 números do CEP.');
           return;
         }
 
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
-          .then((response) => response.json())
-          .then((data) => {
+          .then(response => response.json())
+          .then(data => {
             if (data.erro) {
-              alert("CEP não encontrado.");
+              alert('CEP não encontrado.');
               return;
             }
 
-            document.getElementById("rua").value = data.logradouro || "";
-            document.getElementById("estado").value = data.uf || "";
-            document.getElementById("cidade").value = data.localidade || "";
+            document.getElementById('rua').value = data.logradouro || '';
+            document.getElementById('estado').value = data.uf || '';
+            document.getElementById('cidade').value = data.localidade || '';
           })
           .catch(() => {
-            alert("Erro ao buscar o CEP.");
+            alert('Erro ao buscar o CEP.');
           });
-      });
-
-      function salvarPedido(pedido) {
-        let pedidos = JSON.parse(localStorage.getItem("marju_pedidos")) || [];
-        pedidos.unshift(pedido);
-        localStorage.setItem("marju_pedidos", JSON.stringify(pedidos));
-      }
-
-      function mostrarPedidos() {
-        const pedidos = JSON.parse(localStorage.getItem("marju_pedidos")) || [];
-        const lista = document.getElementById("pedidos-lista");
-        if (pedidos.length === 0) {
-          lista.innerHTML = "Nenhum pedido feito.";
-          return;
-        }
-        lista.innerHTML = "";
-        pedidos.forEach((pedido) => {
-          const div = document.createElement("div");
-          div.className =
-            "bg-white rounded-lg p-4 mb-4 shadow flex flex-col md:flex-row gap-4 items-center";
-          div.innerHTML = `
-        <div class="flex-1">
-          <div class="font-bold text-pink-700 mb-1">Pedido em ${new Date(
-            pedido.data
-          ).toLocaleDateString()}</div>
-          <div class="flex flex-wrap gap-3">
-            ${pedido.itens
-              .map(
-                (item) => `
-              <div class="flex items-center gap-2 border rounded px-2 py-1 bg-pink-50">
-                <img src="${item.img}" alt="${
-                  item.nome
-                }" class="w-10 h-10 object-cover rounded border" />
-                <div>
-                  <div class="font-semibold text-sm">${item.nome}</div>
-                  <div class="text-xs text-gray-500">${item.tamanho || ""} ${
-                  item.cor ? "- " + item.cor : ""
-                }</div>
-                  <div class="text-xs">Qtd: ${item.qtd}</div>
-                  <div class="text-xs font-bold text-pink-600">${item.preco.toLocaleString(
-                    "pt-BR",
-                    {
-                      style: "currency",
-                      currency: "BRL",
-                    }
-                  )}</div>
-                </div>
-              </div>
-            `
-              )
-              .join("")}
-          </div>
-          <div class="mt-2 text-right font-bold text-green-700">Total: ${pedido.total.toLocaleString(
-            "pt-BR",
-            { style: "currency", currency: "BRL" }
-          )}</div>
-        </div>
-      `;
-          lista.appendChild(div);
-        });
-      }
-
-      document.getElementById("btnPedidos").addEventListener("click", () => {
-        mostrarPedidos();
       });
     </script>
   </body>
