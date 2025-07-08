@@ -117,7 +117,6 @@
         background-color: #a0154e;
       }
 
-      /* Modal Estilo */
       #forgotPasswordModal {
         display: none;
         position: fixed;
@@ -222,7 +221,6 @@
       </div>
     </div>
 
-    <!-- Modal de Esqueci minha senha -->
     <div id="forgotPasswordModal">
       <div class="modal-content">
         <h3 style="margin-bottom: 20px; color: #c51e64;">Recuperar Senha</h3>
@@ -248,13 +246,20 @@
         document.querySelectorAll(".tab")[tabIndex].classList.add("active");
       }
 
-      // Evento submit do login
+      // Login
       document.getElementById("login").addEventListener("submit", function (e) {
         e.preventDefault();
         const email = document.getElementById("loginEmail").value.trim();
         const password = document.getElementById("loginPassword").value.trim();
 
-        if (email === "usuario@exemplo.com" && password === "123456") {
+        const usuarioSalvo = JSON.parse(localStorage.getItem("usuario"));
+
+        if (!usuarioSalvo) {
+          alert("Nenhum usuário cadastrado. Por favor, cadastre-se primeiro.");
+          return;
+        }
+
+        if (email === usuarioSalvo.email && password === usuarioSalvo.senha) {
           alert("Login efetuado com sucesso!");
           window.location.href = "produtos.html";
         } else {
@@ -262,7 +267,7 @@
         }
       });
 
-      // Evento submit do cadastro
+      // Cadastro
       document
         .getElementById("cadastro")
         .addEventListener("submit", function (e) {
@@ -281,14 +286,20 @@
             return;
           }
 
-          alert(
-            `Cadastro realizado com sucesso!\nNome: ${nome}\nCPF: ${cpf}\nEmail: ${email}`
-          );
+          const usuario = {
+            cpf,
+            nome,
+            email,
+            senha: password,
+          };
+
+          localStorage.setItem("usuario", JSON.stringify(usuario));
+          alert("Cadastro realizado com sucesso!");
           this.reset();
           showForm("login");
         });
 
-      // Modal Functions
+      // Modal
       function openModal() {
         document.getElementById("forgotPasswordModal").style.display = "flex";
       }
