@@ -38,7 +38,7 @@
         position: relative;
       }
       .header-icons {
-        position: absolute;
+        position: relative;
         top: 10px;
         right: 20px;
         font-size: 20px;
@@ -164,7 +164,9 @@
     <header class="main-banner">
       <div class="header-icons top-bar">
         <a href="produtos.html"><i class="fas fa-home"></i></a>
-        <a href="minha-conta.html"><i class="fas fa-user"></i></a>
+        <a href="javascript:void(0);" id="user-icon"
+          ><i class="fas fa-user"></i
+        ></a>
         <a href="javascript:void(0);" id="cart-icon" class="relative">
           <i class="fas fa-shopping-cart"></i>
           <span
@@ -378,6 +380,25 @@
       </div>
     </div>
 
+    <div
+      id="user-menu"
+      class="hidden absolute right-0 mt-2 w-40 bg-white rounded shadow-lg z-50"
+      style="top: 40px"
+    >
+      <button
+        id="go-account"
+        class="block w-full text-left px-4 py-2 hover:bg-pink-100 text-pink-700"
+      >
+        Minha Conta
+      </button>
+      <button
+        id="logout-btn"
+        class="block w-full text-left px-4 py-2 hover:bg-pink-100 text-red-500"
+      >
+        Sair
+      </button>
+    </div>
+
     <footer>
       <div class="footer-logo">
         <img
@@ -396,7 +417,9 @@
       </div>
     </footer>
     <script>
-      let cart = JSON.parse(localStorage.getItem("marju_cart")) || [];
+      const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+      const cartKey = usuario ? "marju_cart_" + usuario.cpf : "marju_cart";
+      let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
       function updateCartCount() {
         const count = cart.reduce((sum, item) => sum + item.qtd, 0);
@@ -446,7 +469,7 @@
         } else {
           cart.push({ nome, preco, img, qtd: 1 });
         }
-        localStorage.setItem("marju_cart", JSON.stringify(cart));
+        localStorage.setItem(cartKey, JSON.stringify(cart));
         updateCartCount();
         updateCartModal();
       }
@@ -454,12 +477,13 @@
       function changeQtd(idx, delta) {
         cart[idx].qtd += delta;
         if (cart[idx].qtd <= 0) cart.splice(idx, 1);
-        localStorage.setItem("marju_cart", JSON.stringify(cart));
+        localStorage.setItem(cartKey, JSON.stringify(cart));
         updateCartCount();
         updateCartModal();
       }
 
       function openCart() {
+        cart = JSON.parse(localStorage.getItem(cartKey)) || [];
         document.getElementById("cart-modal-bg").classList.add("active");
         document.body.style.overflow = "hidden";
         updateCartModal();
@@ -526,6 +550,39 @@
           if (e.target.classList.contains("comprar-btn")) return;
         });
       });
+
+      document
+        .getElementById("user-icon")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          const menu = document.getElementById("user-menu");
+          menu.classList.toggle("hidden");
+        });
+
+      document.addEventListener("click", function (e) {
+        const menu = document.getElementById("user-menu");
+        const icon = document.getElementById("user-icon");
+        if (
+          !menu.contains(e.target) &&
+          e.target !== icon &&
+          !icon.contains(e.target)
+        ) {
+          menu.classList.add("hidden");
+        }
+      });
+
+      document
+        .getElementById("go-account")
+        .addEventListener("click", function () {
+          window.location.href = "minha-conta.html";
+        });
+
+      document
+        .getElementById("logout-btn")
+        .addEventListener("click", function () {
+          localStorage.removeItem("usuarioLogado");
+          window.location.href = "login.html";
+        });
 
       updateCartCount();
       updateCartModal();

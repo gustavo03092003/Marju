@@ -223,9 +223,14 @@
 
     <div id="forgotPasswordModal">
       <div class="modal-content">
-        <h3 style="margin-bottom: 20px; color: #c51e64;">Recuperar Senha</h3>
-        <input type="email" id="recoveryEmail" placeholder="Digite seu e-mail" required />
-        <div style="display: flex; justify-content: space-between;">
+        <h3 style="margin-bottom: 20px; color: #c51e64">Recuperar Senha</h3>
+        <input
+          type="email"
+          id="recoveryEmail"
+          placeholder="Digite seu e-mail"
+          required
+        />
+        <div style="display: flex; justify-content: space-between">
           <button class="cancel-btn" onclick="closeModal()">Cancelar</button>
           <button class="send-btn" onclick="sendRecoveryEmail()">Enviar</button>
         </div>
@@ -252,22 +257,21 @@
         const email = document.getElementById("loginEmail").value.trim();
         const password = document.getElementById("loginPassword").value.trim();
 
-        const usuarioSalvo = JSON.parse(localStorage.getItem("usuario"));
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        const usuario = usuarios.find(
+          (u) => u.email === email && u.senha === password
+        );
 
-        if (!usuarioSalvo) {
-          alert("Nenhum usuário cadastrado. Por favor, cadastre-se primeiro.");
+        if (!usuario) {
+          alert("E-mail ou senha inválidos ou usuário não cadastrado.");
           return;
         }
 
-        if (email === usuarioSalvo.email && password === usuarioSalvo.senha) {
-          alert("Login efetuado com sucesso!");
-          window.location.href = "produtos.html";
-        } else {
-          alert("E-mail ou senha inválidos.");
-        }
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+        alert("Login efetuado com sucesso!");
+        window.location.href = "produtos.html";
       });
 
-      // Cadastro
       document
         .getElementById("cadastro")
         .addEventListener("submit", function (e) {
@@ -286,14 +290,15 @@
             return;
           }
 
-          const usuario = {
-            cpf,
-            nome,
-            email,
-            senha: password,
-          };
+          let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+          if (usuarios.some((u) => u.email === email)) {
+            alert("Já existe um usuário cadastrado com esse e-mail.");
+            return;
+          }
 
-          localStorage.setItem("usuario", JSON.stringify(usuario));
+          const usuario = { cpf, nome, email, senha: password };
+          usuarios.push(usuario);
+          localStorage.setItem("usuarios", JSON.stringify(usuarios));
           alert("Cadastro realizado com sucesso!");
           this.reset();
           showForm("login");

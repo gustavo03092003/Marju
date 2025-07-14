@@ -56,10 +56,29 @@
       <img src="/assets/Logo2.png" alt="Logo" class="h-72 max-w-none" />
       <div class="flex-1"></div>
       <header class="main-banner">
-        <div class="header-icons top-bar">
+        <div class="header-icons top-bar" style="position: relative">
           <a href="produtos.html"><i class="fas fa-home"></i></a>
-          <a href="minha-conta.html"><i class="fas fa-user"></i></a>
+          <a href="javascript:void(0);" id="user-icon"
+            ><i class="fas fa-user"></i
+          ></a>
           <a href="pagamento.html"><i class="fas fa-shopping-cart"></i></a>
+          <div
+            id="user-menu"
+            class="hidden absolute right-0 mt-2 w-40 bg-white rounded shadow-lg z-50"
+          >
+            <button
+              id="go-account"
+              class="block w-full text-left px-4 py-2 hover:bg-pink-100 text-pink-700"
+            >
+              Minha Conta
+            </button>
+            <button
+              id="logout-btn"
+              class="block w-full text-left px-4 py-2 hover:bg-pink-100 text-red-500"
+            >
+              Sair
+            </button>
+          </div>
         </div>
       </header>
     </header>
@@ -72,11 +91,7 @@
             <h2 class="text-pink-600 text-2xl font-bold mb-2 text-center">
               Identifique-se
             </h2>
-            <div class="text-gray-700 text-sm">
-              <div>Nome: Fulano</div>
-              <div>Email: fulano@gmail.com</div>
-              <div>CPF: 123.456.789-12</div>
-            </div>
+            <div id="user-info" class="text-gray-700 text-sm"></div>
           </div>
           <div
             class="bg-pink-100 rounded-xl p-6 flex flex-col gap-2 shadow flex-1 justify-start"
@@ -178,8 +193,7 @@
               <span class="text-lg">Boleto</span>
             </label>
             <button
-              type="button"
-              onclick="finalizarPedido(event)"
+              type="submit"
               class="mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg text-lg transition"
             >
               Finalizar compra
@@ -219,7 +233,9 @@
     </div>
 
     <script>
-      let cart = JSON.parse(localStorage.getItem("marju_cart")) || [];
+      const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+      const cartKey = usuario ? "marju_cart_" + usuario.cpf : "marju_cart";
+      let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
       function updateCartCount() {
         const count = cart.reduce((sum, item) => sum + item.qtd, 0);
@@ -265,12 +281,13 @@
       function changeQtd(idx, delta) {
         cart[idx].qtd += delta;
         if (cart[idx].qtd <= 0) cart.splice(idx, 1);
-        localStorage.setItem("marju_cart", JSON.stringify(cart));
+        localStorage.setItem(cartKey, JSON.stringify(cart));
         updateCartCount();
         updateCartModal();
       }
 
       function openCart() {
+        cart = JSON.parse(localStorage.getItem(cartKey)) || [];
         document.getElementById("cart-modal-bg").classList.add("active");
         document.body.style.overflow = "hidden";
         updateCartModal();
@@ -317,7 +334,7 @@
 
       function getCart() {
         try {
-          return JSON.parse(localStorage.getItem("marju_cart")) || [];
+          return JSON.parse(localStorage.getItem(cartKey)) || [];
         } catch {
           return [];
         }
@@ -379,29 +396,136 @@
           produtosDiv.appendChild(div);
         });
       }
-      window.addEventListener("DOMContentLoaded", renderCart);
+      window.addEventListener("DOMContentLoaded", () => {
+        const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+        if (usuario) {
+          document.getElementById("user-info").innerHTML = `
+            <div><strong>Nome:</strong> ${usuario.nome}</div>
+            <div><strong>Email:</strong> ${usuario.email}</div>
+            <div><strong>CPF:</strong> ${formatCPF(usuario.cpf)}</div>
+          `;
+
+          const entregaDiv = document.querySelector(
+            ".bg-pink-100.p-6.flex.flex-col.gap-2.shadow.flex-1.justify-start .text-gray-700.text-sm"
+          );
+          if (usuario.endereco && usuario.endereco.rua) {
+            const endereco = usuario.endereco;
+            entregaDiv.innerHTML = `
+              <span class="font-bold">Endereço para entrega:</span>
+              ${endereco.rua}, ${endereco.numero}
+              ${endereco.complemento ? "- " + endereco.complemento : ""}<br />
+              ${endereco.cidade} - ${endereco.estado}<br />
+              CEP ${endereco.cep}
+              <br /><br />
+              <span class="font-bold">Forma de Entrega:</span><br />
+              Padrão Econômico - R$ 28.00<br />
+              <span class="text-xs text-gray-500">(até 10 dias úteis)</span>
+            `;
+          } else {
+            entregaDiv.innerHTML = `
+              <span class="font-bold">Endereço para entrega:</span>
+              <span class="text-red-500 ml-2">Nenhum endereço cadastrado</span>
+              <br /><br />
+              <span class="font-bold">Forma de Entrega:</span><br />
+              Padrão Econômico - R$ 28.00<br />
+              <span class="text-xs text-gray-500">(até 10 dias úteis)</span>
+            `;
+          }
+        } else {
+          window.location.href = "login.html";
+        }
+
+        renderCart();
+      });
+
+      function formatCPF(cpf) {
+        return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+      }
 
       function finalizarPedido(e) {
         if (e) e.preventDefault();
-        const cart = JSON.parse(localStorage.getItem("marju_cart")) || [];
+
+        const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+        if (!usuario || !usuario.endereco || !usuario.endereco.rua) {
+          alert(
+            "Por favor, insira um endereço de entrega antes de finalizar a compra."
+          );
+          return;
+        }
+
+        const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
         if (!cart.length) return;
-        let total = cart.reduce((s, i) => s + i.preco * i.qtd, 0) - 1.99 + 28.0;
+
+        const total =
+          cart.reduce((s, i) => s + i.preco * i.qtd, 0) - 1.99 + 28.0;
+
         const pedido = {
           data: new Date().toISOString(),
           itens: cart,
           total,
+          usuario: usuario,
         };
+
+        const pedidosKey = "marju_pedidos_" + usuario.cpf;
         let pedidos = [];
         try {
-          pedidos = JSON.parse(localStorage.getItem("marju_pedidos")) || [];
+          pedidos = JSON.parse(localStorage.getItem(pedidosKey)) || [];
         } catch {
           pedidos = [];
         }
         pedidos.unshift(pedido);
-        localStorage.setItem("marju_pedidos", JSON.stringify(pedidos));
-        localStorage.removeItem("marju_cart");
+        localStorage.setItem(pedidosKey, JSON.stringify(pedidos));
+        localStorage.removeItem(cartKey);
+
+        alert("Pedido realizado com sucesso!");
         window.location.href = "produtos.html";
       }
+
+      document
+        .getElementById("go-account")
+        .addEventListener("click", function () {
+          window.location.href = "minha-conta.html";
+        });
+
+      document
+        .getElementById("logout-btn")
+        .addEventListener("click", function () {
+          localStorage.removeItem("usuarioLogado");
+          window.location.href = "login.html";
+        });
+
+      document
+        .getElementById("user-icon")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          const menu = document.getElementById("user-menu");
+          menu.classList.toggle("hidden");
+        });
+
+      document.addEventListener("click", function (e) {
+        const menu = document.getElementById("user-menu");
+        const icon = document.getElementById("user-icon");
+        if (
+          !menu.contains(e.target) &&
+          e.target !== icon &&
+          !icon.contains(e.target)
+        ) {
+          menu.classList.add("hidden");
+        }
+      });
+
+      document
+        .getElementById("go-account")
+        .addEventListener("click", function () {
+          window.location.href = "minha-conta.html";
+        });
+
+      document
+        .getElementById("logout-btn")
+        .addEventListener("click", function () {
+          localStorage.removeItem("usuarioLogado");
+          window.location.href = "login.html";
+        });
     </script>
   </body>
 </html>

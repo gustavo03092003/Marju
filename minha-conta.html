@@ -92,10 +92,29 @@
     </header>
 
     <header class="main-banner">
-      <div class="header-icons top-bar">
+      <div class="header-icons top-bar" style="position: relative">
         <a href="produtos.html"><i class="fas fa-home"></i></a>
-        <a href="minha-conta.html"><i class="fas fa-user"></i></a>
+        <a href="javascript:void(0);" id="user-icon"
+          ><i class="fas fa-user"></i
+        ></a>
         <a href="pagamento.html"><i class="fas fa-shopping-cart"></i></a>
+        <div
+          id="user-menu"
+          class="hidden absolute right-0 mt-10 w-40 bg-white rounded shadow-lg z-50"
+        >
+          <button
+            id="go-account"
+            class="block w-full text-left px-4 py-2 hover:bg-pink-100 text-pink-700"
+          >
+            Minha Conta
+          </button>
+          <button
+            id="logout-btn"
+            class="block w-full text-left px-4 py-2 hover:bg-pink-100 text-red-500"
+          >
+            Sair
+          </button>
+        </div>
       </div>
     </header>
 
@@ -133,8 +152,8 @@
             id="nome"
             name="nome"
             placeholder="Nome"
-            required
             class="w-full p-2 rounded border focus:outline-none focus:ring-2 focus:ring-pink-300"
+            disabled
           />
         </div>
         <div>
@@ -219,10 +238,11 @@
             Atualizar
           </button>
           <button
-            type="reset"
-            class="bg-pink-400 text-white font-semibold px-6 py-2 rounded hover:bg-pink-500"
+            type="button"
+            onclick="deleteAccount()"
+            class="bg-red-500 text-white font-semibold px-6 py-2 rounded hover:bg-red-600"
           >
-            Cancelar
+            Deletar Conta
           </button>
         </div>
       </form>
@@ -301,6 +321,10 @@
     </footer>
 
     <script>
+      function formatCPF(cpf) {
+        return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+      }
+
       const btnConta = document.getElementById("btnConta");
       const btnPedidos = document.getElementById("btnPedidos");
       const tabConta = document.getElementById("tabConta");
@@ -353,13 +377,6 @@
         modal.classList.remove("flex");
       });
 
-      document
-        .querySelector(".submit-btn")
-        .addEventListener("click", function (e) {
-          this.disabled = true;
-          this.innerText = "Atualizando...";
-        });
-
       document.getElementById("cep").addEventListener("blur", function () {
         const cep = this.value.replace(/\D/g, "");
 
@@ -385,7 +402,9 @@
           });
       });
 
-      let cart = JSON.parse(localStorage.getItem("marju_cart")) || [];
+      const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+      const cartKey = usuario ? "marju_cart_" + usuario.cpf : "marju_cart";
+      let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
       function updateCartCount() {
         const count = cart.reduce((sum, item) => sum + item.qtd, 0);
@@ -431,12 +450,13 @@
       function changeQtd(idx, delta) {
         cart[idx].qtd += delta;
         if (cart[idx].qtd <= 0) cart.splice(idx, 1);
-        localStorage.setItem("marju_cart", JSON.stringify(cart));
+        localStorage.setItem(cartKey, JSON.stringify(cart));
         updateCartCount();
         updateCartModal();
       }
 
       function openCart() {
+        cart = JSON.parse(localStorage.getItem(cartKey)) || [];
         document.getElementById("cart-modal-bg").classList.add("active");
         document.body.style.overflow = "hidden";
         updateCartModal();
@@ -476,6 +496,226 @@
           openCart();
         });
       }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+        if (usuario) {
+          document.getElementById("nome").value = usuario.nome || "";
+          document.getElementById("cpf").value = formatCPF(usuario.cpf || "");
+          document.getElementById("email").value = usuario.email || "";
+          if (usuario.endereco) {
+            document.getElementById("cep").value = usuario.endereco.cep || "";
+            document.getElementById("rua").value = usuario.endereco.rua || "";
+            document.getElementById("numero").value =
+              usuario.endereco.numero || "";
+            document.getElementById("complemento").value =
+              usuario.endereco.complemento || "";
+            document.getElementById("cidade").value =
+              usuario.endereco.cidade || "";
+            document.getElementById("estado").value =
+              usuario.endereco.estado || "";
+          }
+          showEnderecoEntrega(usuario.endereco);
+        } else {
+          showEnderecoEntrega(null);
+        }
+
+        let pedidos = [];
+        if (usuario && usuario.cpf) {
+          const pedidosKey = "marju_pedidos_" + usuario.cpf;
+          try {
+            pedidos = JSON.parse(localStorage.getItem(pedidosKey)) || [];
+          } catch {
+            pedidos = [];
+          }
+        }
+        const pedidosLista = document.getElementById("pedidos-lista");
+        if (!pedidos.length) {
+          pedidosLista.innerHTML = "Nenhum pedido feito.";
+        } else {
+          let html = "";
+          pedidos.forEach((pedido, idx) => {
+            html += `
+        <div class="bg-white rounded-lg shadow p-4 mb-4 text-left">
+          <div class="font-bold text-pink-700 mb-2">Pedido #${
+            pedidos.length - idx
+          }</div>
+          <div class="text-gray-700 text-sm mb-2">Data: ${new Date(
+            pedido.data
+          ).toLocaleString()}</div>
+          <div class="mb-2">
+            <span class="font-semibold">Itens:</span>
+            <ul class="ml-4 list-disc">
+              ${pedido.itens
+                .map(
+                  (item) => `
+                <li>
+                  ${item.nome} (${item.qtd}x) - R$ ${(
+                    item.preco * item.qtd
+                  ).toFixed(2)}
+                </li>
+              `
+                )
+                .join("")}
+            </ul>
+          </div>
+          <div class="font-semibold text-green-700">Total: R$ ${pedido.total.toFixed(
+            2
+          )}</div>
+        </div>
+      `;
+          });
+          pedidosLista.innerHTML = html;
+        }
+      });
+
+      function showEnderecoEntrega(endereco) {
+        let div = document.getElementById("endereco-entrega");
+        if (!div) {
+          div = document.createElement("div");
+          div.id = "endereco-entrega";
+          div.className = "mt-4 mb-2 text-base font-bold text-pink-600";
+          document.getElementById("cpf").parentElement.appendChild(div);
+        }
+        div.innerHTML = `Endereço de entrega`;
+        let infoDiv = document.getElementById("endereco-info");
+        if (!infoDiv) {
+          infoDiv = document.createElement("div");
+          infoDiv.id = "endereco-info";
+          infoDiv.className = "text-sm text-gray-700";
+          div.parentElement.appendChild(infoDiv);
+        }
+        if (endereco && endereco.rua) {
+          infoDiv.innerHTML = `
+      ${endereco.rua}, ${endereco.numero}
+      ${endereco.complemento ? "- " + endereco.complemento : ""}<br>
+      ${endereco.cidade} - ${endereco.estado}<br>
+      CEP ${endereco.cep}
+      <br><button type="button" onclick="apagarEndereco()" class="text-red-500 underline text-xs mt-1">Apagar endereço</button>
+    `;
+        } else {
+          infoDiv.innerHTML = "";
+        }
+      }
+
+      function apagarEndereco() {
+        let usuario = JSON.parse(localStorage.getItem("usuario"));
+        if (usuario) {
+          usuario.endereco = {};
+          localStorage.setItem("usuario", JSON.stringify(usuario));
+          showEnderecoEntrega(null);
+          document.getElementById("cep").value = "";
+          document.getElementById("rua").value = "";
+          document.getElementById("numero").value = "";
+          document.getElementById("complemento").value = "";
+          document.getElementById("cidade").value = "";
+          document.getElementById("estado").value = "";
+          alert("Endereço apagado!");
+        }
+      }
+
+      function updateUserInfo(e) {
+        e.preventDefault();
+        let usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+        if (!usuario) return;
+
+        usuario.nome = document.getElementById("nome").value;
+        usuario.cpf = document.getElementById("cpf").value.replace(/\D/g, "");
+        usuario.email = document.getElementById("email").value;
+        usuario.endereco = {
+          cep: document.getElementById("cep").value,
+          rua: document.getElementById("rua").value,
+          numero: document.getElementById("numero").value,
+          complemento: document.getElementById("complemento").value,
+          cidade: document.getElementById("cidade").value,
+          estado: document.getElementById("estado").value,
+        };
+
+        let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        const idx = usuarios.findIndex((u) => u.cpf === usuario.cpf);
+        if (idx > -1) {
+          usuarios[idx] = usuario;
+          localStorage.setItem("usuarios", JSON.stringify(usuarios));
+        }
+
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+        showEnderecoEntrega(usuario.endereco);
+
+        document.getElementById("cep").value = "";
+        document.getElementById("rua").value = "";
+        document.getElementById("numero").value = "";
+        document.getElementById("complemento").value = "";
+        document.getElementById("cidade").value = "";
+        document.getElementById("estado").value = "";
+
+        const submitBtn = document.querySelector(".submit-btn");
+        submitBtn.innerText = "Atualizado!";
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+          submitBtn.innerText = "Atualizar";
+          submitBtn.disabled = false;
+        }, 2000);
+
+        alert("Informações atualizadas com sucesso!");
+      }
+
+      document
+        .getElementById("tabConta")
+        .addEventListener("submit", updateUserInfo);
+
+      function deleteAccount() {
+        const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+        if (
+          confirm(
+            "Tem certeza que deseja deletar sua conta? Esta ação não pode ser desfeita."
+          )
+        ) {
+          if (usuario && usuario.cpf) {
+            localStorage.removeItem("marju_pedidos_" + usuario.cpf);
+            localStorage.removeItem("marju_cart_" + usuario.cpf);
+            let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+            usuarios = usuarios.filter((u) => u.cpf !== usuario.cpf);
+            localStorage.setItem("usuarios", JSON.stringify(usuarios));
+          }
+          localStorage.removeItem("usuarioLogado");
+          alert("Conta deletada com sucesso!");
+          window.location.href = "login.html";
+        }
+      }
+
+      document
+        .getElementById("user-icon")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          const menu = document.getElementById("user-menu");
+          menu.classList.toggle("hidden");
+        });
+
+      document.addEventListener("click", function (e) {
+        const menu = document.getElementById("user-menu");
+        const icon = document.getElementById("user-icon");
+        if (
+          !menu.contains(e.target) &&
+          e.target !== icon &&
+          !icon.contains(e.target)
+        ) {
+          menu.classList.add("hidden");
+        }
+      });
+
+      document
+        .getElementById("go-account")
+        .addEventListener("click", function () {
+          window.location.href = "minha-conta.html";
+        });
+
+      document
+        .getElementById("logout-btn")
+        .addEventListener("click", function () {
+          localStorage.removeItem("usuarioLogado");
+          window.location.href = "login.html";
+        });
 
       updateCartCount();
       updateCartModal();
